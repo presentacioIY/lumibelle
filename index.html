@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMIBELLE — Presentación Comercial | Coopidrogas</title>
+
+  <!-- Google Fonts: Cormorant Garamond (Logo y editorial) + Plus Jakarta Sans (UI y técnico) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            porcelain: '#FAF9F6',
+            ink: '#18181B',
+            muted: '#52525B',
+            hairline: '#E8E6E1',
+          },
+          letterSpacing: {
+            brand: '0.28em',
+            eyebrow: '0.16em',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAF9F6;
+      color: #18181B;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Animaciones suaves de transición */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-enter {
+      animation: slideIn 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeQuick {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-quick {
+      animation: fadeQuick 0.24s ease-out forwards;
+    }
+
+    /* Scrollbar sutil solo cuando el viewport lo requiere */
+    .soft-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .soft-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .soft-scroll::-webkit-scrollbar-thumb {
+      background: #DCD9D2;
+      border-radius: 9999px;
+    }
+
+    /* =====================================================================
+       MAQUETAS ARQUITECTÓNICAS EN CSS PURO (SIN IMÁGENES)
+       ===================================================================== */
+
+    /* Efecto de vidrio / PET transparente con brillo vertical realista */
+    .glass-body {
+      background: linear-gradient(
+        90deg,
+        rgba(232, 236, 240, 0.55) 0%,
+        rgba(255, 255, 255, 0.92) 16%,
+        rgba(246, 248, 250, 0.42) 48%,
+        rgba(255, 255, 255, 0.82) 84%,
+        rgba(220, 226, 232, 0.55) 100%
+      );
+      border: 1px solid rgba(203, 210, 217, 0.85);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -8px 14px rgba(190, 198, 206, 0.25),
+        0 18px 34px -18px rgba(24, 24, 27, 0.22);
+    }
+
+    /* Superficie blanca pura para tapas, goteros, válvulas, bombas y envase airless */
+    .pure-white-part {
+      background: linear-gradient(
+        90deg,
+        #F2F1EE 0%,
+        #FFFFFF 24%,
+        #FFFFFF 72%,
+        #ECEAE5 100%
+      );
+      border: 1px solid #DFDDD8;
+    }
+
+    /* Tapa transparente (espumero) */
+    .clear-overcap {
+      background: linear-gradient(
+        90deg,
+        rgba(240, 244, 248, 0.55) 0%,
+        rgba(255, 255, 255, 0.85) 26%,
+        rgba(245, 247, 250, 0.3) 65%,
+        rgba(255, 255, 255, 0.72) 100%
+      );
+      border: 1px solid rgba(203, 210, 217, 0.8);
+    }
+
+    /* Sombra de piso suave debajo de cada envase */
+    .vessel-shadow {
+      background: radial-gradient(ellipse at center, rgba(24, 24, 27, 0.16) 0%, rgba(24, 24, 27, 0) 72%);
+    }
+
+    /* Efecto sutil de pliegue lateral para cajas plegadizas */
+    .folding-box-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E2DC;
+      box-shadow:
+        -6px 0 0 -1px #F4F2ED,
+        -6px 0 0 0 #E5E2DC,
+        0 20px 40px -20px rgba(24, 24, 27, 0.18);
+    }
+  </style>
+</head>
+<body class="bg-porcelain text-ink font-sans selection:bg-ink selection:text-white overflow-x-hidden">
+
+  <!-- Contenedor principal en 100dvh sin Header -->
+  <div id="app" class="min-h-[100dvh] lg:h-[100dvh] flex flex-col justify-between bg-porcelain">
+
+    <!-- ==================== ESCENARIO DE DIAPOSITIVAS ==================== -->
+    <main
+      id="slide-stage"
+      class="flex-1 flex flex-col justify-center overflow-y-auto soft-scroll"
+      aria-live="polite"
+    >
+      <!-- Contenido dinámico de la diapositiva activa -->
+    </main>
+
+    <!-- ==================== FOOTER MINIMALISTA (SOLO FLECHAS + PROGRESO) ==================== -->
+    <footer class="sticky bottom-0 z-30 bg-porcelain/95 backdrop-blur-md border-t border-hairline shrink-0">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-center gap-4 sm:gap-6">
+        <!-- Botón Izquierdo: Solo icono flecha -->
+        <button
+          id="btn-prev"
+          type="button"
+          class="w-10 h-10 rounded-full border border-hairline bg-white hover:bg-ink hover:text-white hover:border-ink disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-ink disabled:hover:border-hairline disabled:cursor-not-allowed flex items-center justify-center text-ink transition-all shrink-0 shadow-[0_2px_8px_-4px_rgba(24,24,27,0.08)]"
+          aria-label="Diapositiva anterior"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12.5 4.5L7 10l5.5 5.5" />
+          </svg>
+        </button>
+
+        <!-- Indicador central: Número + Línea de progreso segmentada en 12 diapositivas -->
+        <div class="flex-1 max-w-md flex flex-col items-center gap-2 min-w-0">
+          <div class="text-[11px] font-medium tabular-nums tracking-widest text-muted">
+            <span id="counter-current" class="text-ink font-semibold">01</span>
+            <span class="mx-1 text-gray-300">/</span>
+            <span id="counter-total">12</span>
+          </div>
+
+          <div
+            id="progress-segments"
+            class="w-full grid grid-cols-12 gap-1 sm:gap-1.5 items-center"
+            role="tablist"
+            aria-label="Progreso de diapositivas"
+          >
+            <!-- 12 segmentos interactivos generados por JS -->
+          </div>
+        </div>
+
+        <!-- Botón Derecho: Solo icono flecha -->
+        <button
+          id="btn-next"
+          type="button"
+          class="w-10 h-10 rounded-full border border-hairline bg-white hover:bg-ink hover:text-white hover:border-ink disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-ink disabled:hover:border-hairline disabled:cursor-not-allowed flex items-center justify-center text-ink transition-all shrink-0 shadow-[0_2px_8px_-4px_rgba(24,24,27,0.08)]"
+          aria-label="Diapositiva siguiente"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7.5 4.5L13 10l-5.5 5.5" />
+          </svg>
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==================== DATOS Y LÓGICA DE LA PRESENTACIÓN ==================== -->
+  <script>
+    /**
+     * Portafolio exacto de los 8 productos LUMIBELLE (Diapositivas 2 a 9).
+     */
+    const PRODUCTS = [
+      {
+        id: 'p1',
+        slideIndex: 1, // Diapositiva 2
+        refNum: '01 / 08',
+        name: 'Serum facial de Ácido Hialurónico',
+        shortName: 'Serum Ácido Hialurónico',
+        volume: '30 ml',
+        hasBox: true,
+        vesselType: 'dropper',
+        vesselSpec: 'Vidrio transparente, hombro recto, gotero y casquete blancos',
+        accent: '#4A89B8',
+        tint: '#F0F6FA',
+        pvp: '$41.900',
+        pvpNum: 41900,
+        cost: '$8.390',
+        costNum: 8390,
+        refFarmatodo: '$40.950',
+        refFarmatodoNum: 40950,
+        label: {
+          actives: ['+ Hydrafence', '+ Manteca de karité'],
+          benefits: [
+            'Hidratación',
+            'Mejora la apariencia de las líneas de expresión',
+            'Ayuda a fortalecer la barrera cutánea'
+          ]
+        },
+        box: {
+          phrase: 'Ácido hialurónico de bajo peso molecular con arroz y alga marina del Atlántico, para una piel hidratada, suave y elástica.',
+          withList: [
+            'Ácido hialurónico de bajo peso molecular',
+            'Hydrafence (arroz y alga marina rica en calcio)',
+            'Sodium PCA (factor natural de hidratación)',
+            'Manteca de karité'
+          ]
+        },
+        benefits: [
+          'Con ácido hialurónico',
+          'Hidratación',
+          'Mejora la apariencia de las líneas de expresión',
+          'Ayuda a restaurar y fortalecer la barrera cutánea',
+          'Aporta suavidad y mejora la elasticidad de la piel'
+        ],
+        ingredients: [
+          {
+            name: 'Ácido hialurónico de bajo peso molecular',
+            desc: 'Funciona como un reservorio de agua que ayuda a mantener la piel hidratada, suave y elástica.'
+          },
+          {
+            name: 'Hydrafence',
+            desc: 'Une la amilopectina del arroz con un alga marina rica en calcio de las aguas frías del Atlántico. Inspirado en la fuerza de la Gran Muralla, ayuda a fortalecer la barrera de la piel. Nace del aprovechamiento de subproductos del arroz.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          },
+          {
+            name: 'Propanediol de origen natural',
+            desc: 'Alternativa natural a los glicoles de origen petroquímico; aporta hidratación y una textura ligera.'
+          },
+          {
+            name: 'Manteca de karité',
+            desc: 'Manteca vegetal que aporta suavidad, nutrición y confort.'
+          }
+        ]
+      },
+      {
+        id: 'p2',
+        slideIndex: 2, // Diapositiva 3
+        refNum: '02 / 08',
+        name: 'Serum facial de Vitamina C',
+        shortName: 'Serum Vitamina C',
+        volume: '30 ml',
+        hasBox: true,
+        vesselType: 'dropper',
+        vesselSpec: 'Vidrio transparente, hombro recto, gotero y casquete blancos',
+        accent: '#D9822B',
+        tint: '#FDF6EE',
+        pvp: '$44.900',
+        pvpNum: 44900,
+        cost: '$8.390',
+        costNum: 8390,
+        refFarmatodo: '$41.950',
+        refFarmatodoNum: 41950,
+        label: {
+          actives: ['+ Café cereza colombiano', '+ Ácido hialurónico'],
+          benefits: [
+            'Luminosidad',
+            'Ayuda a unificar el tono',
+            'Acción antioxidante'
+          ]
+        },
+        box: {
+          phrase: 'Vitamina C del fruto fresco del café 100% colombiano, con vitamina E y ácidos clorogénicos, los antioxidantes naturales del café.',
+          withList: [
+            'Café cereza colombiano',
+            'Ácido hialurónico',
+            'Sodium PCA (factor natural de hidratación)',
+            'Manteca de karité'
+          ]
+        },
+        benefits: [
+          'Con vitamina C',
+          'Aporta luminosidad al rostro',
+          'Ayuda a unificar el tono de la piel y atenuar la apariencia de manchas',
+          'Acción antioxidante que protege frente al estrés oxidativo y los radicales libres',
+          'Hidratación que ayuda a suavizar líneas de expresión'
+        ],
+        ingredients: [
+          {
+            name: 'Vitamina C del café cereza colombiano',
+            desc: 'Bioemulsión del fruto fresco del café 100% colombiano, sin conservantes. Reúne vitamina C, vitamina E y ácidos clorogénicos, los antioxidantes naturales del café.'
+          },
+          {
+            name: 'Ácido hialurónico de bajo peso molecular',
+            desc: 'Funciona como un reservorio de agua que ayuda a mantener la piel hidratada, suave y elástica.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          },
+          {
+            name: 'Propanediol de origen natural',
+            desc: 'Alternativa natural a los glicoles de origen petroquímico; aporta hidratación y una textura ligera.'
+          },
+          {
+            name: 'Manteca de karité',
+            desc: 'Manteca vegetal que aporta suavidad, nutrición y confort.'
+          }
+        ]
+      },
+      {
+        id: 'p3',
+        slideIndex: 3, // Diapositiva 4
+        refNum: '03 / 08',
+        name: 'Crema facial hidratante',
+        shortName: 'Crema hidratante',
+        volume: '50 ml',
+        hasBox: true,
+        vesselType: 'jar',
+        vesselSpec: 'Pote de vidrio transparente, tapa rosca blanca',
+        accent: '#5B9AA0',
+        tint: '#F1F7F8',
+        pvp: '$39.900',
+        pvpNum: 39900,
+        cost: '$9.000',
+        costNum: 9000,
+        refFarmatodo: '$39.950',
+        refFarmatodoNum: 39950,
+        label: {
+          actives: ['+ Ácido hialurónico', '+ Manteca de karité'],
+          benefits: [
+            'Hidrata',
+            'Cuida la función barrera de la piel',
+            'Piel más suave y tersa'
+          ]
+        },
+        box: {
+          phrase: 'Repone el factor natural de hidratación de la piel y lo complementa con manteca de karité, en una textura aterciopelada.',
+          withList: [
+            'Ácido hialurónico',
+            'Sodium PCA (factor natural de hidratación)',
+            'Manteca de karité'
+          ]
+        },
+        benefits: [
+          'Hidrata y mantiene la humedad de la piel',
+          'Cuida, repara y fortalece la función barrera de la piel',
+          'Ayuda a prevenir la pérdida de agua y protege contra la resequedad',
+          'Deja la piel más suave, tersa y luminosa'
+        ],
+        ingredients: [
+          {
+            name: 'Ácido hialurónico de bajo peso molecular',
+            desc: 'Funciona como un reservorio de agua que ayuda a mantener la piel hidratada, suave y elástica.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          },
+          {
+            name: 'Manteca de karité',
+            desc: 'Manteca vegetal que aporta suavidad, nutrición y confort.'
+          },
+          {
+            name: 'Textura aterciopelada',
+            desc: 'Una emulsión suave al tacto, que se siente cómoda y no deja sensación grasosa.'
+          }
+        ]
+      },
+      {
+        id: 'p4',
+        slideIndex: 4, // Diapositiva 5
+        refNum: '04 / 08',
+        name: 'Crema facial antiedad',
+        shortName: 'Crema antiedad',
+        volume: '50 ml',
+        hasBox: true,
+        vesselType: 'jar',
+        vesselSpec: 'Pote de vidrio transparente, tapa rosca blanca',
+        accent: '#7E5A7E',
+        tint: '#F7F3F7',
+        pvp: '$44.900',
+        pvpNum: 44900,
+        cost: '$7.800',
+        costNum: 7800,
+        refFarmatodo: '$41.950',
+        refFarmatodoNum: 41950,
+        label: {
+          actives: ['+ GABA', '+ Niacinamida'],
+          benefits: [
+            'Ayuda a reducir la apariencia de líneas de expresión',
+            'Unifica el tono',
+            'Reafirma'
+          ]
+        },
+        box: {
+          phrase: 'GABA, un aminoácido presente de forma natural en el cuerpo y obtenido por fermentación, junto a la niacinamida.',
+          withList: [
+            'GABA de fermentación',
+            'Niacinamida (vitamina B3)',
+            'Sodium PCA (factor natural de hidratación)'
+          ]
+        },
+        benefits: [
+          'Ayuda a reducir la apariencia de líneas de expresión y arrugas',
+          'Unifica el tono de la piel y aporta luminosidad',
+          'Reafirma y mejora la elasticidad de la piel',
+          'Efecto tensor y alisador que revitaliza el rostro',
+          'Hidrata y fortalece la barrera cutánea'
+        ],
+        ingredients: [
+          {
+            name: 'GABA de fermentación',
+            desc: 'Aminoácido presente de forma natural en el cuerpo, obtenido por fermentación. Ayuda a suavizar la apariencia de las líneas de expresión y a una piel más tersa y firme.'
+          },
+          {
+            name: 'Niacinamida',
+            desc: 'Vitamina B3, aliada de un tono más uniforme y luminoso y de una barrera cutánea fuerte.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          },
+          {
+            name: 'Textura aterciopelada',
+            desc: 'Una emulsión suave al tacto, que se siente cómoda y no deja sensación grasosa.'
+          }
+        ]
+      },
+      {
+        id: 'p5',
+        slideIndex: 5, // Diapositiva 6
+        refNum: '05 / 08',
+        name: 'Contorno de ojos',
+        shortName: 'Contorno de ojos',
+        volume: '15 ml',
+        hasBox: true,
+        vesselType: 'airless',
+        vesselSpec: 'Airless blanco, bomba blanca con sobretapa blanca',
+        accent: '#5E8C6A',
+        tint: '#F2F7F3',
+        pvp: '$39.900',
+        pvpNum: 39900,
+        cost: '$8.900',
+        costNum: 8900,
+        refFarmatodo: '$39.950 – $41.950',
+        refFarmatodoNum: 40950,
+        label: {
+          actives: ['+ Flores blancas', '+ Cafeína y té verde'],
+          benefits: [
+            'Humecta e hidrata',
+            'Ayuda a reducir la apariencia de bolsas y ojeras',
+            'Efecto descongestionante'
+          ]
+        },
+        box: {
+          phrase: 'La esencia de dos flores blancas, el jazmín de Arabia y el espino blanco, con té verde, cafeína y guaraná.',
+          withList: [
+            'Flores blancas (jazmín de Arabia y espino blanco)',
+            'Té verde, cafeína y guaraná',
+            'Ácido hialurónico',
+            'Manteca de karité'
+          ]
+        },
+        benefits: [
+          'Humecta e hidrata la delicada piel del contorno',
+          'Ayuda a reducir la apariencia de bolsas y ojeras',
+          'Efecto descongestionante y revitalizante para una mirada más descansada',
+          'Ayuda a suavizar líneas de expresión y mejorar la firmeza del párpado',
+          'Con té verde, cafeína y guaraná'
+        ],
+        ingredients: [
+          {
+            name: "Eye'fective, la esencia de dos flores blancas",
+            desc: 'El jazmín de Arabia, cuyo nombre persa significa "regalo de Dios", y el espino blanco, la flor de la esperanza en la época victoriana. Ayudan a cuidar la microcirculación del contorno para una mirada más descansada.'
+          },
+          {
+            name: 'Té verde, cafeína y guaraná',
+            desc: 'Un trío botánico que ayuda a descongestionar y revitalizar la mirada.'
+          },
+          {
+            name: 'Ácido hialurónico de bajo peso molecular',
+            desc: 'Funciona como un reservorio de agua que ayuda a mantener la piel hidratada, suave y elástica.'
+          },
+          {
+            name: 'Manteca de karité',
+            desc: 'Manteca vegetal que aporta suavidad, nutrición y confort.'
+          },
+          {
+            name: 'Propanediol de origen natural',
+            desc: 'Alternativa natural a los glicoles de origen petroquímico; aporta hidratación y una textura ligera.'
+          }
+        ]
+      },
+      {
+        id: 'p6',
+        slideIndex: 6, // Diapositiva 7
+        refNum: '06 / 08',
+        name: 'Gel limpiador facial',
+        shortName: 'Gel limpiador',
+        volume: '200 ml',
+        hasBox: false,
+        vesselType: 'pump',
+        vesselSpec: 'PET transparente, hombro recto, válvula cremera sencilla blanca',
+        accent: '#4D9A8E',
+        tint: '#F0F8F7',
+        pvp: '$29.900',
+        pvpNum: 29900,
+        cost: '$8.890',
+        costNum: 8890,
+        refFarmatodo: '$39.950 (250 ml)',
+        refFarmatodoNum: 39950,
+        label: {
+          actives: ['+ Prebióticos', '+ Células madre de rosa'],
+          benefits: [
+            'Limpieza gentil pero eficiente',
+            'Retira el maquillaje',
+            'No reseca ni maltrata la piel'
+          ]
+        },
+        box: null,
+        benefits: [
+          'Limpieza gentil pero eficiente que retira maquillaje e impurezas',
+          'No reseca ni maltrata la piel, preserva su hidratación natural',
+          'Protege y ayuda a mantener el equilibrio de la microbiota cutánea',
+          'Ideal para pieles sensibles o con tendencia al acné, libre de sulfatos',
+          'Enriquecido con extracto de células madre de rosas, prebióticos y Sodium PCA'
+        ],
+        ingredients: [
+          {
+            name: 'Extracto de células madre de rosa',
+            desc: 'La delicadeza de la rosa en una fórmula de limpieza que cuida la piel.'
+          },
+          {
+            name: 'Prebióticos',
+            desc: 'Ayudan a mantener el equilibrio de la microbiota de la piel.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          }
+        ]
+      },
+      {
+        id: 'p7',
+        slideIndex: 7, // Diapositiva 8
+        refNum: '07 / 08',
+        name: 'Espuma limpiadora facial',
+        shortName: 'Espuma limpiadora',
+        volume: '200 ml',
+        hasBox: false,
+        vesselType: 'foamer',
+        vesselSpec: 'PET transparente espumero, cilíndrico alargado, hombro recto, válvula espumera blanca con tapa transparente',
+        accent: '#C27B88',
+        tint: '#FBF3F5',
+        pvp: '$34.900',
+        pvpNum: 34900,
+        cost: '$7.300',
+        costNum: 7300,
+        refFarmatodo: 'Sin referente',
+        refFarmatodoNum: null,
+        label: {
+          actives: ['+ Células madre de rosa', '+ Betaína'],
+          benefits: [
+            'Limpieza gentil pero eficiente',
+            'Retira el maquillaje',
+            'No reseca ni maltrata la piel'
+          ]
+        },
+        box: null,
+        benefits: [
+          'Limpieza gentil pero eficiente que retira maquillaje e impurezas',
+          'No reseca ni maltrata la piel, repone el factor natural de hidratación (NMF)',
+          'Suaviza y ayuda a restaurar los lípidos naturales de la piel durante el lavado',
+          'Espuma cremosa y suave con el rostro y el contorno de ojos, libre de sulfatos',
+          'Enriquecido con extracto de células madre de rosas'
+        ],
+        ingredients: [
+          {
+            name: 'Agente relipidizante de origen vegetal',
+            desc: 'Ayuda a devolverle a la piel sus lípidos naturales durante el lavado.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          },
+          {
+            name: 'Extracto de células madre de rosa',
+            desc: 'La delicadeza de la rosa en una fórmula de limpieza que cuida la piel.'
+          },
+          {
+            name: 'Betaína',
+            desc: 'De origen vegetal; aporta suavidad y confort durante la limpieza.'
+          }
+        ]
+      },
+      {
+        id: 'p8',
+        slideIndex: 8, // Diapositiva 9
+        refNum: '08 / 08',
+        name: 'Agua micelar',
+        shortName: 'Agua micelar',
+        volume: '400 ml',
+        hasBox: false,
+        vesselType: 'fliptop',
+        vesselSpec: 'PET transparente, hombro recto, tapa flip top blanca',
+        accent: '#B57E8F',
+        tint: '#FAF3F6',
+        pvp: '$19.900',
+        pvpNum: 19900,
+        cost: '$6.700',
+        costNum: 6700,
+        refFarmatodo: '$19.950',
+        refFarmatodoNum: 19950,
+        label: {
+          actives: ['+ Células madre de rosa', '+ Betaína'],
+          benefits: [
+            'Limpieza gentil pero eficiente',
+            'Retira el maquillaje sin enjuague',
+            'No reseca ni maltrata la piel'
+          ]
+        },
+        box: null,
+        benefits: [
+          'Limpieza gentil pero eficiente que remueve maquillaje sin necesidad de enjuague',
+          'No reseca ni maltrata la piel, aporta hidratación y confort',
+          'Suave con pieles sensibles y la zona ocular, libre de sulfatos y alcohol',
+          'Enriquecido con extracto de células madre de rosas'
+        ],
+        ingredients: [
+          {
+            name: 'Agente relipidizante de origen vegetal',
+            desc: 'Ayuda a devolverle a la piel sus lípidos naturales durante el lavado.'
+          },
+          {
+            name: 'Sodium PCA',
+            desc: 'Parte del factor natural de hidratación que la propia piel produce; ayuda a reponerlo y a conservar la humedad.'
+          },
+          {
+            name: 'Extracto de células madre de rosa',
+            desc: 'La delicadeza de la rosa en una fórmula de limpieza que cuida la piel.'
+          },
+          {
+            name: 'Betaína',
+            desc: 'De origen vegetal; aporta suavidad y confort durante la limpieza.'
+          }
+        ]
+      }
+    ];
+
+    /**
+     * Tabla exacta de 11 referentes Farmatodo (Diapositiva 11).
+     */
+    const FARMATODO_REFS = [
+      { lumibelle: 'Serum de Ácido Hialurónico', ref: 'Sérum Ácido Hialurónico + Silicio Orgánico', vol: '30 ml', price: '$40.950' },
+      { lumibelle: 'Serum de Vitamina C', ref: 'Serum Vitamina C con Ácido Ferúlico', vol: '30 ml', price: '$41.950' },
+      { lumibelle: 'Crema hidratante', ref: 'Crema Aquagel 7 Tipos Ácido Hialurónico', vol: '50 g', price: '$39.950' },
+      { lumibelle: 'Crema antiedad', ref: 'Crema Antiedad con Bioretinol', vol: '50 g', price: '$41.950' },
+      { lumibelle: 'Contorno de ojos', ref: 'Contorno de Ojos Multipéptidos Efecto Lifting', vol: '15 ml', price: '$41.950' },
+      { lumibelle: 'Contorno de ojos', ref: 'Crema Contorno de Ojos Ácido Hialurónico Cafeína', vol: '15 g', price: '$39.950' },
+      { lumibelle: 'Gel limpiador', ref: 'Gel Limpiador Facial con Niacinamida', vol: '120 ml', price: '$34.950' },
+      { lumibelle: 'Gel limpiador', ref: 'Gel Limpiador con Ácido Salicílico', vol: '250 ml', price: '$39.950' },
+      { lumibelle: 'Gel limpiador', ref: 'Gel Limpiador con Niacinamida', vol: '500 ml', price: '$54.950' },
+      { lumibelle: 'Agua micelar', ref: 'Agua Micelar con Ácido Hialurónico', vol: '400 ml', price: '$19.950' },
+      { lumibelle: 'Espuma limpiadora', ref: 'No se encontró espuma de marca propia Farmatodo', vol: '—', price: '—' }
+    ];
+
+    const TOTAL_SLIDES = 12;
+
+    // Estado de la aplicación
+    const state = {
+      currentSlide: 0,      // 0..11
+      vesselView: 'vessel', // 'vessel' | 'box'
+      detailTab: 'benefits',// 'benefits' | 'ingredients'
+      lineupFilter: 'all',  // 'all' | 'box' | 'nobox'
+      pricingView: 'table'  // 'table' | 'bars'
+    };
+
+    // Referencias DOM
+    const stageEl = document.getElementById('slide-stage');
+    const counterCurrentEl = document.getElementById('counter-current');
+    const counterTotalEl = document.getElementById('counter-total');
+    const progressSegmentsEl = document.getElementById('progress-segments');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    /**
+     * Devuelve el color de acento correspondiente a cada diapositiva.
+     */
+    function getSlideAccent(index) {
+      if (index >= 1 && index <= 8) {
+        return PRODUCTS[index - 1].accent;
+      }
+      return '#18181B';
+    }
+
+    /* =====================================================================
+       MAQUETAS ARQUITECTÓNICAS DE ENVASES Y CAJAS EN CSS PURO
+       ===================================================================== */
+
+    /**
+     * Etiqueta frontal impresa sobre el envase (modo completo o compacto para bodegón)
+     */
+    function renderFrontLabel(product, compact = false) {
+      if (compact) {
+        return `
+          <div class="w-full h-full bg-white/95 rounded-[4px] border border-hairline/90 overflow-hidden flex flex-col justify-between shadow-sm">
+            <div class="h-1.5 w-full shrink-0" style="background-color: ${product.accent};"></div>
+            <div class="px-1.5 py-1.5 flex-1 flex flex-col justify-between text-center">
+              <div class="font-serif text-[7px] font-semibold tracking-[0.2em] uppercase text-ink leading-none">LUMIBELLE</div>
+              <div class="my-auto py-0.5">
+                <p class="text-[7px] font-semibold text-ink leading-[1.15] line-clamp-2">${product.shortName}</p>
+                <p class="text-[5.5px] font-medium mt-0.5 truncate" style="color: ${product.accent};">${product.label.actives[0]}</p>
+              </div>
+              <div class="text-[5.5px] text-muted border-t border-hairline pt-0.5">${product.volume}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      const isJar = product.vesselType === 'jar';
+      return `
+        <div class="w-full h-full bg-white rounded-[5px] border border-[#E5E3DE] overflow-hidden flex flex-col justify-between shadow-[0_2px_10px_-4px_rgba(24,24,27,0.08)]">
+          <!-- Banda cromática del activo -->
+          <div class="h-2 w-full shrink-0" style="background-color: ${product.accent};"></div>
+
+          <div class="${isJar ? 'px-3.5 py-2.5' : 'px-3.5 py-3'} flex-1 flex flex-col justify-between text-left">
+            <div>
+              <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-hairline">
+                <span class="font-serif text-[11px] font-semibold tracking-[0.24em] uppercase text-ink leading-none">LUMIBELLE</span>
+                <span class="text-[8px] uppercase tracking-widest text-gray-400">Facial</span>
+              </div>
+
+              <h4 class="${isJar ? 'text-[12px]' : 'text-[13px]'} font-semibold text-ink leading-tight mb-1.5">
+                ${product.name}
+              </h4>
+
+              <div class="space-y-0.5 mb-2">
+                ${product.label.actives.map(act => `
+                  <p class="text-[10px] font-semibold leading-tight" style="color: ${product.accent};">${act}</p>
+                `).join('')}
+              </div>
+
+              <ul class="space-y-1">
+                ${product.label.benefits.map(b => `
+                  <li class="flex items-start gap-1.5 text-[9px] text-muted leading-tight">
+                    <span class="mt-1 w-1 h-1 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
+                    <span>${b}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <div class="pt-1.5 mt-2 border-t border-hairline flex items-center justify-between text-[8.5px] font-medium text-ink">
+              <span>Cont. neto ${product.volume}</span>
+              <span class="w-2 h-2 rounded-full" style="background-color: ${product.accent}; opacity: 0.7;"></span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /**
+     * Maqueta arquitectónica detallada del envase (Diapositivas 2 a 9)
+     */
+    function renderVesselMockup(product) {
+      const type = product.vesselType;
+
+      // 1. SERUM 30 ml: Vidrio transparente hombro recto, gotero y casquete blancos
+      if (type === 'dropper') {
+        return `
+          <div class="flex flex-col items-center justify-end py-2 fade-quick">
+            <!-- Bulbo del gotero (blanco puro) -->
+            <div class="w-7 h-10 rounded-t-full pure-white-part border-b-0"></div>
+            <!-- Casquete rosca (blanco puro) -->
+            <div class="w-12 h-6 rounded-t-[3px] pure-white-part flex flex-col justify-evenly px-1">
+              <div class="h-px bg-gray-200/70"></div>
+              <div class="h-px bg-gray-200/70"></div>
+            </div>
+            <!-- Cuello corto -->
+            <div class="w-10 h-2.5 glass-body border-y-0"></div>
+            <!-- Cuerpo de vidrio hombro recto -->
+            <div class="w-44 h-60 rounded-t-[10px] rounded-b-[12px] glass-body relative p-2.5 pt-4 flex items-center justify-center">
+              <!-- Pipeta interior sutil -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-5 bg-white/60 border-x border-gray-200/60"></div>
+              <!-- Etiqueta frontal -->
+              <div class="w-full h-[206px] relative z-10">
+                ${renderFrontLabel(product)}
+              </div>
+              <!-- Base gruesa de vidrio -->
+              <div class="absolute bottom-0 inset-x-0 h-3 rounded-b-[11px] bg-white/45 border-t border-gray-200/60"></div>
+            </div>
+            <div class="w-36 h-3 mt-1.5 rounded-full vessel-shadow"></div>
+          </div>
+        `;
+      }
+
+      // 2. CREMA 50 ml: Pote de vidrio transparente, tapa rosca blanca
+      if (type === 'jar') {
+        return `
+          <div class="flex flex-col items-center justify-end py-6 fade-quick">
+            <!-- Tapa rosca blanca pura -->
+            <div class="w-56 h-11 rounded-t-[10px] rounded-b-[2px] pure-white-part shadow-sm relative">
+              <div class="absolute bottom-1.5 inset-x-3 h-px bg-gray-200/70"></div>
+            </div>
+            <!-- Pote de vidrio transparente -->
+            <div class="w-60 h-48 rounded-t-[6px] rounded-b-[22px] glass-body relative px-3.5 py-3 flex items-center justify-center">
+              <div class="w-full h-[160px] relative z-10">
+                ${renderFrontLabel(product)}
+              </div>
+              <!-- Fondo grueso del pote -->
+              <div class="absolute bottom-0 inset-x-0 h-3.5 rounded-b-[21px] bg-white/50 border-t border-gray-200/60"></div>
+            </div>
+            <div class="w-48 h-3 mt-2 rounded-full vessel-shadow"></div>
+          </div>
+        `;
+      }
+
+      // 3. CONTORNO DE OJOS 15 ml: Airless blanco, bomba blanca con sobretapa blanca
+      if (type === 'airless') {
+        return `
+          <div class="flex flex-col items-center justify-end py-2 fade-quick">
+            <!-- Sobretapa blanca pura -->
+            <div class="w-36 h-12 rounded-t-[10px] pure-white-part border-b border-gray-300/80 relative flex items-end justify-center pb-1.5">
+              <span class="text-[7px] tracking-widest uppercase text-gray-300">Airless</span>
+            </div>
+            <!-- Collarín de bomba blanca -->
+            <div class="w-36 h-3 pure-white-part border-t-0"></div>
+            <!-- Cuerpo cilíndrico Airless blanco puro -->
+            <div class="w-36 h-60 rounded-b-[10px] pure-white-part border-t-0 relative p-2 pt-3 flex items-center justify-center shadow-[0_18px_34px_-18px_rgba(24,24,27,0.22)]">
+              <div class="w-full h-[212px]">
+                ${renderFrontLabel(product)}
+              </div>
+            </div>
+            <div class="w-32 h-3 mt-1.5 rounded-full vessel-shadow"></div>
+          </div>
+        `;
+      }
+
+      // 4. GEL LIMPIADOR 200 ml: PET transparente hombro recto, válvula cremera sencilla blanca
+      if (type === 'pump') {
+        return `
+          <div class="flex flex-col items-center justify-end py-1 fade-quick">
+            <!-- Cabezal y pico de válvula cremera blanca -->
+            <div class="relative flex items-start">
+              <div class="w-10 h-5 rounded-t-[6px] pure-white-part"></div>
+              <div class="w-8 h-2.5 mt-1 -ml-1 rounded-r-full pure-white-part"></div>
+            </div>
+            <!-- Cuello del dispensador -->
+            <div class="w-5 h-3.5 pure-white-part border-y-0"></div>
+            <!-- Rosca blanca -->
+            <div class="w-14 h-5 rounded-t-[3px] pure-white-part"></div>
+            <!-- Botella PET transparente hombro recto -->
+            <div class="w-44 h-64 rounded-t-[12px] rounded-b-[12px] glass-body relative p-2.5 pt-4 flex items-center justify-center">
+              <!-- Tubo interior sutil -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-6 bg-white/70"></div>
+              <div class="w-full h-[216px] relative z-10">
+                ${renderFrontLabel(product)}
+              </div>
+            </div>
+            <div class="w-36 h-3 mt-1.5 rounded-full vessel-shadow"></div>
+          </div>
+        `;
+      }
+
+      // 5. ESPUMA LIMPIADORA 200 ml: PET espumero alargado, válvula espumera blanca con tapa transparente
+      if (type === 'foamer') {
+        return `
+          <div class="flex flex-col items-center justify-end py-1 fade-quick">
+            <!-- Tapa transparente cubriendo la válvula espumera blanca -->
+            <div class="w-24 h-16 rounded-t-[10px] clear-overcap relative flex flex-col items-center justify-end pb-1">
+              <!-- Pulsador espumero blanco interior -->
+              <div class="w-12 h-8 rounded-t-[6px] pure-white-part mb-0.5"></div>
+              <div class="w-16 h-3 pure-white-part"></div>
+            </div>
+            <!-- Rosca blanca ancha del espumero -->
+            <div class="w-24 h-4 pure-white-part border-t-0"></div>
+            <!-- Cilindro PET alargado hombro recto -->
+            <div class="w-40 h-60 rounded-t-[10px] rounded-b-[12px] glass-body relative p-2.5 pt-3 flex items-center justify-center">
+              <div class="w-full h-[210px] relative z-10">
+                ${renderFrontLabel(product)}
+              </div>
+            </div>
+            <div class="w-32 h-3 mt-1.5 rounded-full vessel-shadow"></div>
+          </div>
+        `;
+      }
+
+      // 6. AGUA MICELAR 400 ml: PET transparente hombro recto, tapa flip top blanca
+      return `
+        <div class="flex flex-col items-center justify-end py-1 fade-quick">
+          <!-- Tapa flip top blanca pura -->
+          <div class="w-16 h-8 rounded-t-[6px] pure-white-part relative flex items-center justify-center">
+            <div class="w-6 h-1.5 rounded-full bg-gray-200/80 mb-2"></div>
+          </div>
+          <!-- Botella PET 400 ml hombro recto -->
+          <div class="w-48 h-68 rounded-t-[14px] rounded-b-[14px] glass-body relative p-3 pt-4 flex items-center justify-center" style="height: 272px;">
+            <div class="w-full h-[222px] relative z-10">
+              ${renderFrontLabel(product)}
+            </div>
+          </div>
+          <div class="w-40 h-3 mt-1.5 rounded-full vessel-shadow"></div>
+        </div>
+      `;
+    }
+
+    /**
+     * Maqueta arquitectónica de Caja Plegadiza en CSS puro (para los 5 productos con caja)
+     */
+    function renderFoldingBoxMockup(product) {
+      if (!product.box) return '';
+      return `
+        <div class="w-full max-w-[300px] mx-auto py-1 fade-quick">
+          <div class="folding-box-card rounded-[10px] overflow-hidden">
+            <!-- Banda superior de color -->
+            <div class="h-2.5 w-full" style="background-color: ${product.accent};"></div>
+
+            <div class="p-4 sm:p-5 text-left">
+              <!-- Encabezado caja -->
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-hairline">
+                <span class="font-serif text-sm font-semibold tracking-[0.24em] uppercase text-ink">LUMIBELLE</span>
+                <span class="text-[9px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full" style="background-color: ${product.tint}; color: ${product.accent};">
+                  Caja plegadiza
+                </span>
+              </div>
+
+              <h4 class="text-sm font-semibold text-ink leading-snug mb-1">${product.name}</h4>
+              <div class="flex flex-wrap gap-x-3 gap-y-0.5 mb-2.5">
+                ${product.label.actives.map(a => `
+                  <span class="text-[10.5px] font-semibold" style="color: ${product.accent};">${a}</span>
+                `).join('')}
+              </div>
+
+              <!-- Frase especial -->
+              <p class="font-serif italic text-[13.5px] leading-snug text-ink p-2.5 rounded-lg mb-3 border border-hairline" style="background-color: ${product.tint};">
+                "${product.box.phrase}"
+              </p>
+
+              <!-- Beneficios completos -->
+              <ul class="space-y-1 mb-3">
+                ${product.benefits.map(b => `
+                  <li class="flex items-start gap-1.5 text-[10px] text-muted leading-tight">
+                    <span class="mt-1 w-1 h-1 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
+                    <span>${b}</span>
+                  </li>
+                `).join('')}
+              </ul>
+
+              <!-- Sección Con -->
+              <div class="pt-2.5 border-t border-hairline">
+                <p class="text-[9px] font-semibold tracking-eyebrow uppercase text-muted mb-1.5">Con</p>
+                <div class="flex flex-wrap gap-1 mb-2.5">
+                  ${product.box.withList.map(item => `
+                    <span class="px-2 py-0.5 rounded bg-porcelain border border-hairline text-[9.5px] text-ink">${item}</span>
+                  `).join('')}
+                </div>
+                <div class="flex items-center justify-between text-[10px] font-semibold text-ink pt-2 border-t border-dashed border-hairline">
+                  <span>Cont. neto ${product.volume}</span>
+                  <span class="font-normal text-muted">Cara frontal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /**
+     * Mini envase proporcional para el Bodegón de la Línea Completa (Diapositiva 10)
+     */
+    function renderLineupVessel(product) {
+      const t = product.vesselType;
+      if (t === 'dropper') {
+        return `
+          <div class="flex flex-col items-center">
+            <div class="w-3.5 h-5 rounded-t-full pure-white-part border-b-0"></div>
+            <div class="w-6 h-3 rounded-t-[2px] pure-white-part"></div>
+            <div class="w-20 h-28 rounded-t-[6px] rounded-b-[7px] glass-body p-1.5 flex items-center">
+              ${renderFrontLabel(product, true)}
+            </div>
+          </div>
+        `;
+      }
+      if (t === 'jar') {
+        return `
+          <div class="flex flex-col items-center">
+            <div class="w-24 h-5 rounded-t-[6px] pure-white-part"></div>
+            <div class="w-26 h-20 rounded-t-[4px] rounded-b-[12px] glass-body p-1.5 flex items-center" style="width: 104px;">
+              ${renderFrontLabel(product, true)}
+            </div>
+          </div>
+        `;
+      }
+      if (t === 'airless') {
+        return `
+          <div class="flex flex-col items-center">
+            <div class="w-16 h-6 rounded-t-[6px] pure-white-part"></div>
+            <div class="w-16 h-26 rounded-b-[6px] pure-white-part border-t-0 p-1 flex items-center shadow-sm" style="height: 106px;">
+              ${renderFrontLabel(product, true)}
+            </div>
+          </div>
+        `;
+      }
+      if (t === 'pump') {
+        return `
+          <div class="flex flex-col items-center">
+            <div class="flex items-start">
+              <div class="w-5 h-3 rounded-t-[3px] pure-white-part"></div>
+              <div class="w-4 h-1.5 mt-0.5 -ml-0.5 rounded-r-full pure-white-part"></div>
+            </div>
+            <div class="w-3 h-2 pure-white-part border-y-0"></div>
+            <div class="w-7 h-2.5 pure-white-part"></div>
+            <div class="w-22 h-36 rounded-t-[7px] rounded-b-[8px] glass-body p-1.5 flex items-center" style="width: 90px;">
+              ${renderFrontLabel(product, true)}
+            </div>
+          </div>
+        `;
+      }
+      if (t === 'foamer') {
+        return `
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-8 rounded-t-[6px] clear-overcap flex flex-col items-center justify-end pb-0.5">
+              <div class="w-6 h-4 rounded-t-[3px] pure-white-part"></div>
+            </div>
+            <div class="w-12 h-2.5 pure-white-part border-t-0"></div>
+            <div class="w-20 h-36 rounded-t-[6px] rounded-b-[8px] glass-body p-1.5 flex items-center">
+              ${renderFrontLabel(product, true)}
+            </div>
+          </div>
+        `;
+      }
+      // fliptop 400ml
+      return `
+        <div class="flex flex-col items-center">
+          <div class="w-9 h-4 rounded-t-[4px] pure-white-part"></div>
+          <div class="w-24 h-44 rounded-t-[8px] rounded-b-[9px] glass-body p-1.5 flex items-center">
+            ${renderFrontLabel(product, true)}
+          </div>
+        </div>
+      `;
+    }
+
+    /* =====================================================================
+       RENDERIZADORES DE LAS 12 DIAPOSITIVAS
+       ===================================================================== */
+
+    /**
+     * Diapositiva 1: Introducción a la línea
+     */
+    function renderSlide1Intro() {
+      return `
+        <section class="max-w-5xl w-full mx-auto px-5 sm:px-10 py-10 sm:py-12 slide-enter">
+          <div class="bg-white border border-hairline rounded-3xl p-8 sm:p-12 lg:p-16 shadow-[0_24px_60px_-32px_rgba(24,24,27,0.08)]">
+            <!-- Encabezado editorial discreto -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-7 border-b border-hairline">
+              <span class="text-[11px] font-medium tracking-eyebrow uppercase text-muted">
+                Propuesta Comercial · Línea Facial
+              </span>
+              <span class="text-[11px] font-medium text-muted">
+                Instincts Humains para <strong class="text-ink font-semibold">Coopidrogas</strong>
+              </span>
+            </div>
+
+            <!-- Logotipo tipográfico principal -->
+            <div class="pt-9 pb-7 text-center">
+              <h1 class="font-serif text-5xl sm:text-7xl font-medium tracking-brand uppercase text-ink leading-none">
+                LUMIBELLE
+              </h1>
+              <div class="w-14 h-px bg-ink/40 mx-auto my-6"></div>
+              <h2 class="font-serif text-2xl sm:text-4xl font-normal text-ink leading-tight">
+                Lumibelle: ciencia cosmética y naturaleza
+              </h2>
+            </div>
+
+            <!-- Texto exacto del brief -->
+            <div class="max-w-3xl mx-auto space-y-4 text-center text-sm sm:text-base leading-relaxed text-muted">
+              <p class="text-ink font-medium text-base sm:text-lg">
+                Lumibelle es una línea facial pensada para entregar mucho valor con un costo optimizado.
+              </p>
+              <p>
+                Sus fórmulas toman los beneficios de la naturaleza y honran la ancestralidad de los extractos naturales. A la vez, combinan esos extractos en desarrollos tecnológicos avanzados para que la piel los tolere perfectamente y obtenga beneficios reales.
+              </p>
+              <p>
+                Inspirada en la cosmética coreana, Lumibelle une nueva tecnología con extractos eficaces que cuidan la piel y aportan a su longevidad: un cuidado enfocado en el <span class="text-ink font-medium italic font-serif text-lg">well aging</span>.
+              </p>
+            </div>
+
+            <!-- 3 píldoras/métricas limpias al pie del bloque -->
+            <div class="mt-9 pt-7 border-t border-hairline flex flex-wrap items-center justify-center gap-3">
+              <span class="px-4 py-2 rounded-full bg-porcelain border border-hairline text-xs sm:text-sm font-medium text-ink">
+                8 productos
+              </span>
+              <span class="px-4 py-2 rounded-full bg-porcelain border border-hairline text-xs sm:text-sm font-medium text-ink">
+                5 con caja plegadiza
+              </span>
+              <span class="px-4 py-2 rounded-full bg-porcelain border border-hairline text-xs sm:text-sm font-medium text-ink">
+                PVP sugerido: $19.900 – $44.900
+              </span>
+            </div>
+
+            <!-- Código cromático sutil de los 8 productos -->
+            <div class="grid grid-cols-8 gap-1.5 mt-7 max-w-md mx-auto">
+              ${PRODUCTS.map(p => `
+                <div class="h-1 rounded-full" style="background-color: ${p.accent}; opacity: 0.85;"></div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /**
+     * Diapositivas 2 a 9: Una diapositiva por producto
+     */
+    function renderSlideProduct(product) {
+      const showBox = product.hasBox && state.vesselView === 'box';
+
+      return `
+        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-9 items-center">
+
+            <!-- COLUMNA IZQUIERDA: Maqueta CSS + Selector Caja + Tarjeta de Precios -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+              <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-6 flex flex-col items-center justify-between min-h-[385px] relative overflow-hidden">
+                <!-- Halo cromático muy sutil de fondo -->
+                <div
+                  class="absolute -top-24 -right-24 w-56 h-56 rounded-full pointer-events-none opacity-45 blur-3xl"
+                  style="background-color: ${product.tint};"
+                ></div>
+
+                <!-- Selector Envase | Caja plegadiza (solo en los 5 productos con caja) -->
+                <div class="w-full flex items-center justify-between gap-2 mb-3 relative z-10">
+                  <span class="text-[10px] font-semibold tracking-eyebrow uppercase text-muted">
+                    ${showBox ? 'Empaque secundario' : 'Envase de referencia'}
+                  </span>
+                  ${product.hasBox ? `
+                    <div class="inline-flex p-0.5 rounded-full bg-porcelain border border-hairline">
+                      <button
+                        type="button"
+                        onclick="setVesselView('vessel')"
+                        class="px-3 py-1 rounded-full text-[11px] font-medium transition-all ${!showBox ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'}"
+                      >
+                        Envase
+                      </button>
+                      <button
+                        type="button"
+                        onclick="setVesselView('box')"
+                        class="px-3 py-1 rounded-full text-[11px] font-medium transition-all ${showBox ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'}"
+                      >
+                        Caja plegadiza
+                      </button>
+                    </div>
+                  ` : `
+                    <span class="text-[10px] font-medium text-muted px-2.5 py-0.5 rounded-full bg-porcelain border border-hairline">
+                      Sin caja
+                    </span>
+                  `}
+                </div>
+
+                <!-- Escenario de maqueta CSS -->
+                <div class="w-full flex-1 flex items-center justify-center relative z-10">
+                  ${showBox ? renderFoldingBoxMockup(product) : renderVesselMockup(product)}
+                </div>
+              </div>
+
+              <!-- Tarjeta compacta de precios -->
+              <div class="bg-white border border-hairline rounded-2xl p-4 grid grid-cols-3 gap-2 text-center">
+                <div class="p-2 rounded-xl" style="background-color: ${product.tint};">
+                  <span class="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">PVP Sugerido</span>
+                  <span class="text-base sm:text-lg font-semibold tabular-nums" style="color: ${product.accent};">${product.pvp}</span>
+                </div>
+                <div class="p-2 rounded-xl bg-porcelain/70">
+                  <span class="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">Costo IH</span>
+                  <span class="text-sm sm:text-base font-semibold tabular-nums text-ink">${product.cost}</span>
+                </div>
+                <div class="p-2 rounded-xl bg-porcelain/70">
+                  <span class="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">Ref. Farmatodo</span>
+                  <span class="text-xs sm:text-sm font-semibold tabular-nums text-ink leading-tight block mt-0.5">${product.refFarmatodo}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: Encabezado + Pestañas Beneficios / Ingredientes -->
+            <div class="lg:col-span-7 flex flex-col gap-5">
+              <!-- Encabezado de producto -->
+              <div class="space-y-3">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span
+                    class="px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide"
+                    style="background-color: ${product.tint}; color: ${product.accent};"
+                  >
+                    Referencia ${product.refNum}
+                  </span>
+                  <span class="px-3 py-1 rounded-full text-[11px] font-medium bg-white border border-hairline text-ink">
+                    ${product.volume}
+                  </span>
+                  <span class="px-3 py-1 rounded-full text-[11px] font-medium ${product.hasBox ? 'bg-ink text-white' : 'bg-white border border-hairline text-muted'}">
+                    ${product.hasBox ? 'Con caja plegadiza' : 'Sin caja'}
+                  </span>
+                </div>
+
+                <div class="pl-4 border-l-[3px]" style="border-color: ${product.accent};">
+                  <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink leading-tight">
+                    ${product.name}
+                  </h2>
+                  <p class="text-xs sm:text-sm text-muted mt-1.5">
+                    ${product.vesselSpec}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Contenedor de pestañas interactivas -->
+              <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-6">
+                <div class="flex items-center gap-2 pb-4 mb-4 border-b border-hairline" role="tablist">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected="${state.detailTab === 'benefits'}"
+                    onclick="setDetailTab('benefits')"
+                    class="px-4 py-2 rounded-full text-xs font-medium transition-all ${
+                      state.detailTab === 'benefits'
+                        ? 'bg-ink text-white shadow-sm'
+                        : 'bg-porcelain text-muted hover:text-ink'
+                    }"
+                  >
+                    Beneficios
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected="${state.detailTab === 'ingredients'}"
+                    onclick="setDetailTab('ingredients')"
+                    class="px-4 py-2 rounded-full text-xs font-medium transition-all ${
+                      state.detailTab === 'ingredients'
+                        ? 'bg-ink text-white shadow-sm'
+                        : 'bg-porcelain text-muted hover:text-ink'
+                    }"
+                  >
+                    Ingredientes que lo hacen especial
+                  </button>
+                </div>
+
+                <!-- Panel de contenido -->
+                ${state.detailTab === 'benefits' ? `
+                  <div class="space-y-3 fade-quick">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      ${product.label.actives.map(a => `
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background-color: ${product.tint}; color: ${product.accent};">
+                          ${a}
+                        </span>
+                      `).join('')}
+                    </div>
+                    <ul class="space-y-2.5">
+                      ${product.benefits.map(b => `
+                        <li class="flex items-start gap-3 text-sm text-ink leading-relaxed p-2.5 rounded-xl bg-porcelain/70 border border-hairline/70">
+                          <span class="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
+                          <span>${b}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                ` : `
+                  <div class="space-y-2.5 max-h-[340px] overflow-y-auto soft-scroll pr-1 fade-quick">
+                    ${product.ingredients.map(ing => `
+                      <div class="p-3.5 rounded-xl bg-porcelain/70 border border-hairline/80">
+                        <div class="flex items-center gap-2 mb-1">
+                          <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
+                          <h4 class="text-xs sm:text-sm font-semibold text-ink">${ing.name}</h4>
+                        </div>
+                        <p class="text-xs sm:text-[13px] text-muted leading-relaxed pl-3.5">${ing.desc}</p>
+                      </div>
+                    `).join('')}
+                  </div>
+                `}
+              </div>
+            </div>
+
+          </div>
+        </section>
+      `;
+    }
+
+    /**
+     * Diapositiva 10: Línea completa (Bodegón / Mosaico)
+     */
+    function renderSlide10Lineup() {
+      const filtered = PRODUCTS.filter(p => {
+        if (state.lineupFilter === 'box') return p.hasBox;
+        if (state.lineupFilter === 'nobox') return !p.hasBox;
+        return true;
+      });
+
+      const filterBtn = (key, label) => `
+        <button
+          type="button"
+          onclick="setLineupFilter('${key}')"
+          class="px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all ${
+            state.lineupFilter === key
+              ? 'bg-ink text-white border-ink shadow-sm'
+              : 'bg-white text-muted border-hairline hover:text-ink'
+          }"
+        >
+          ${label}
+        </button>
+      `;
+
+      return `
+        <section class="max-w-7xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <p class="text-[11px] font-semibold tracking-eyebrow uppercase text-muted mb-1">
+                Línea Completa · Unidad Gráfica
+              </p>
+              <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink leading-tight">
+                Portafolio LUMIBELLE
+              </h2>
+              <p class="text-xs sm:text-sm text-muted mt-1">
+                Tapas y dispensadores en blanco puro, tipografía coherente y acento por activo. Selecciona un producto para ver su ficha.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              ${filterBtn('all', 'Todos (8)')}
+              ${filterBtn('box', 'Con caja plegadiza (5)')}
+              ${filterBtn('nobox', 'Sin caja (3)')}
+            </div>
+          </div>
+
+          <!-- Bodegón proporcional sobre repisa editorial -->
+          <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-8 shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)]">
+            <div class="grid grid-cols-2 sm:grid-cols-4 ${filtered.length === 8 ? 'lg:grid-cols-8' : filtered.length === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-3'} gap-4 items-end pb-6 border-b border-hairline">
+              ${filtered.map(p => `
+                <button
+                  type="button"
+                  onclick="goToSlide(${p.slideIndex})"
+                  class="group flex flex-col items-center justify-end text-center focus:outline-none pt-3 transition-transform duration-300 hover:-translate-y-1.5"
+                  title="Ver ${p.name}"
+                >
+                  <div class="flex items-end justify-center min-h-[196px]">
+                    ${renderLineupVessel(p)}
+                  </div>
+                  <div class="w-16 h-2 mt-1 rounded-full vessel-shadow"></div>
+                  <div class="mt-3 space-y-0.5 px-1">
+                    <span class="block text-[11px] font-semibold text-ink group-hover:underline underline-offset-4 leading-tight">
+                      ${p.shortName}
+                    </span>
+                    <span class="block text-[10px] text-muted">${p.volume} · <strong class="text-ink">${p.pvp}</strong></span>
+                    <span
+                      class="inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-medium"
+                      style="background-color: ${p.tint}; color: ${p.accent};"
+                    >
+                      ${p.hasBox ? 'Con caja' : 'Sin caja'}
+                    </span>
+                  </div>
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Leyenda de coherencia -->
+            <div class="pt-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-white border border-gray-300"></span>
+                <span>Cierres 100% en blanco</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-serif tracking-brand uppercase text-ink font-semibold">LUMIBELLE</span>
+                <span>· Identidad clínica inspirada en Farmatodo</span>
+              </div>
+              <span>PVP entre <strong class="text-ink">$19.900 y $44.900</strong></span>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /**
+     * Diapositiva 11: Productos referentes del mercado (Farmatodo)
+     */
+    function renderSlide11Farmatodo() {
+      return `
+        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
+          <div class="mb-5">
+            <p class="text-[11px] font-semibold tracking-eyebrow uppercase text-muted mb-1">
+              Benchmark de Mercado
+            </p>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink leading-tight">
+              Referentes Farmatodo (marca propia)
+            </h2>
+            <p class="text-xs sm:text-sm text-muted mt-1.5">
+              Precios de lista publicados en farmatodo.com.co y en el lineal. Farmatodo aplica promociones frecuentes: verificar antes de presentar.
+            </p>
+          </div>
+
+          <div class="bg-white border border-hairline rounded-3xl overflow-hidden shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)]">
+            <div class="overflow-x-auto soft-scroll">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-hairline bg-porcelain/90 text-[10.5px] font-semibold tracking-eyebrow uppercase text-muted">
+                    <th class="py-3 px-4 sm:px-6">Producto Lumibelle</th>
+                    <th class="py-3 px-4 sm:px-6">Referente Farmatodo</th>
+                    <th class="py-3 px-4 sm:px-6 text-right">Contenido</th>
+                    <th class="py-3 px-4 sm:px-6 text-right">Precio de lista</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-hairline text-xs sm:text-[13px]">
+                  ${FARMATODO_REFS.map(row => `
+                    <tr class="hover:bg-porcelain/50 transition-colors">
+                      <td class="py-2.5 px-4 sm:px-6 font-medium text-ink whitespace-nowrap">${row.lumibelle}</td>
+                      <td class="py-2.5 px-4 sm:px-6 ${row.price === '—' ? 'italic text-muted' : 'text-muted'}">${row.ref}</td>
+                      <td class="py-2.5 px-4 sm:px-6 text-right tabular-nums text-muted whitespace-nowrap">${row.vol}</td>
+                      <td class="py-2.5 px-4 sm:px-6 text-right tabular-nums font-semibold text-ink whitespace-nowrap">${row.price}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /**
+     * Diapositiva 12: Precios Lumibelle (Tabla comparativa | Barras visuales)
+     */
+    function renderSlide12Pricing() {
+      const maxVal = 48000;
+
+      return `
+        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
+            <div class="max-w-3xl">
+              <p class="text-[11px] font-semibold tracking-eyebrow uppercase text-muted mb-1">
+                Estrategia de Precios
+              </p>
+              <h2 class="font-serif text-2xl sm:text-4xl font-semibold text-ink leading-tight">
+                PVP Lumibelle entre $19.900 y $44.900, en línea con Farmatodo
+              </h2>
+              <p class="text-[11.5px] sm:text-xs text-muted mt-1.5 leading-relaxed">
+                Costo de cotización: precio unitario de Instincts Humains a Coopidrogas, antes de IVA, por 5.000 unidades por referencia (cotización 20261103-130711723, válida hasta el 1 de febrero de 2027). PVP redondeado a cifras terminadas en 900.
+              </p>
+            </div>
+
+            <!-- Selector Tabla comparativa | Barras visuales -->
+            <div class="inline-flex p-1 rounded-full bg-white border border-hairline shrink-0 self-start lg:self-end">
+              <button
+                type="button"
+                onclick="setPricingView('table')"
+                class="px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  state.pricingView === 'table' ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'
+                }"
+              >
+                Tabla comparativa
+              </button>
+              <button
+                type="button"
+                onclick="setPricingView('bars')"
+                class="px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  state.pricingView === 'bars' ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'
+                }"
+              >
+                Barras visuales
+              </button>
+            </div>
+          </div>
+
+          ${state.pricingView === 'table' ? `
+            <div class="bg-white border border-hairline rounded-3xl overflow-hidden shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)] fade-quick">
+              <div class="overflow-x-auto soft-scroll">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-hairline bg-porcelain/90 text-[10.5px] font-semibold tracking-eyebrow uppercase text-muted">
+                      <th class="py-3.5 px-4 sm:px-6">Producto</th>
+                      <th class="py-3.5 px-4 text-right">Contenido</th>
+                      <th class="py-3.5 px-4 text-right">Costo cotización</th>
+                      <th class="py-3.5 px-4 text-right">Referente Farmatodo</th>
+                      <th class="py-3.5 px-4 sm:px-6 text-right text-ink">PVP sugerido Lumibelle</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-hairline text-xs sm:text-sm">
+                    ${PRODUCTS.map(p => `
+                      <tr class="hover:bg-porcelain/50 transition-colors">
+                        <td class="py-3 px-4 sm:px-6 font-medium text-ink">
+                          <div class="flex items-center gap-2.5">
+                            <span class="w-2 h-2 rounded-full shrink-0" style="background-color: ${p.accent};"></span>
+                            <span>${p.name}</span>
+                          </div>
+                        </td>
+                        <td class="py-3 px-4 text-right tabular-nums text-muted whitespace-nowrap">${p.volume}</td>
+                        <td class="py-3 px-4 text-right tabular-nums text-ink whitespace-nowrap">${p.cost}</td>
+                        <td class="py-3 px-4 text-right tabular-nums text-muted whitespace-nowrap">${p.refFarmatodo}</td>
+                        <td class="py-3 px-4 sm:px-6 text-right tabular-nums font-semibold whitespace-nowrap">
+                          <span class="px-2.5 py-1 rounded-full" style="background-color: ${p.tint}; color: ${p.accent};">
+                            ${p.pvp}
+                          </span>
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ` : `
+            <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-7 shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)] fade-quick">
+              <!-- Leyenda de barras -->
+              <div class="flex flex-wrap items-center gap-4 pb-4 mb-4 border-b border-hairline text-[11px] text-muted">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-2 rounded-full bg-ink"></span>
+                  <span>Costo cotización IH</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-2 rounded-full bg-[#4A89B8]"></span>
+                  <span>PVP sugerido Lumibelle (color del activo)</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-2 rounded-full bg-[#D6D3CD]"></span>
+                  <span>Referente Farmatodo</span>
+                </div>
+              </div>
+
+              <!-- Barras comparativas en CSS puro -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                ${PRODUCTS.map(p => {
+                  const costPct = Math.round((p.costNum / maxVal) * 100);
+                  const pvpPct = Math.round((p.pvpNum / maxVal) * 100);
+                  const refPct = p.refFarmatodoNum ? Math.round((p.refFarmatodoNum / maxVal) * 100) : 0;
+
+                  return `
+                    <div class="space-y-1.5">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-semibold text-ink truncate pr-2">${p.shortName} <span class="font-normal text-muted">(${p.volume})</span></span>
+                        <span class="font-semibold tabular-nums shrink-0" style="color: ${p.accent};">${p.pvp}</span>
+                      </div>
+
+                      <!-- Barra 1: Costo cotización -->
+                      <div class="flex items-center gap-2">
+                        <div class="flex-1 h-2 rounded-full bg-porcelain overflow-hidden">
+                          <div class="h-full rounded-full bg-ink transition-all duration-500" style="width: ${costPct}%;"></div>
+                        </div>
+                        <span class="w-14 text-right text-[10px] tabular-nums text-muted">${p.cost}</span>
+                      </div>
+
+                      <!-- Barra 2: PVP Lumibelle -->
+                      <div class="flex items-center gap-2">
+                        <div class="flex-1 h-2 rounded-full bg-porcelain overflow-hidden">
+                          <div class="h-full rounded-full transition-all duration-500" style="width: ${pvpPct}%; background-color: ${p.accent};"></div>
+                        </div>
+                        <span class="w-14 text-right text-[10px] font-semibold tabular-nums" style="color: ${p.accent};">${p.pvp}</span>
+                      </div>
+
+                      <!-- Barra 3: Referente Farmatodo -->
+                      <div class="flex items-center gap-2">
+                        <div class="flex-1 h-2 rounded-full bg-porcelain overflow-hidden">
+                          ${refPct > 0
+                            ? `<div class="h-full rounded-full bg-[#CFCBC4] transition-all duration-500" style="width: ${refPct}%;"></div>`
+                            : `<div class="h-full w-full border border-dashed border-hairline rounded-full"></div>`
+                          }
+                        </div>
+                        <span class="w-14 text-right text-[10px] tabular-nums text-muted">${p.refFarmatodoNum ? '$' + p.refFarmatodoNum.toLocaleString('es-CO') : 'N/A'}</span>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `}
+        </section>
+      `;
+    }
+
+    /* =====================================================================
+       CONTROLADOR DE RENDERIZADO Y PROGRESO SEGMENTADO
+       ===================================================================== */
+
+    function renderProgressSegments() {
+      const current = state.currentSlide;
+      const activeColor = getSlideAccent(current);
+
+      progressSegmentsEl.innerHTML = Array.from({ length: TOTAL_SLIDES }, (_, idx) => {
+        const isPassed = idx <= current;
+        const isCurrent = idx === current;
+        return `
+          <button
+            type="button"
+            onclick="goToSlide(${idx})"
+            role="tab"
+            aria-selected="${isCurrent}"
+            aria-label="Ir a diapositiva ${idx + 1}"
+            class="group py-2 focus:outline-none flex items-center"
+          >
+            <span
+              class="block w-full rounded-full transition-all duration-300 ${isCurrent ? 'h-[4px]' : 'h-[2.5px] group-hover:h-[4px]'}"
+              style="background-color: ${isPassed ? activeColor : '#E4E1DA'}; opacity: ${isCurrent ? '1' : isPassed ? '0.62' : '1'};"
+            ></span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderCurrentSlide() {
+      const idx = state.currentSlide;
+      let html = '';
+
+      if (idx === 0) {
+        html = renderSlide1Intro();
+      } else if (idx >= 1 && idx <= 8) {
+        html = renderSlideProduct(PRODUCTS[idx - 1]);
+      } else if (idx === 9) {
+        html = renderSlide10Lineup();
+      } else if (idx === 10) {
+        html = renderSlide11Farmatodo();
+      } else {
+        html = renderSlide12Pricing();
+      }
+
+      stageEl.innerHTML = html;
+      stageEl.scrollTop = 0;
+
+      // Actualizar contador numérico y barra segmentada
+      counterCurrentEl.textContent = String(idx + 1).padStart(2, '0');
+      counterTotalEl.textContent = String(TOTAL_SLIDES).padStart(2, '0');
+      renderProgressSegments();
+
+      // Estado de botones de flecha
+      btnPrev.disabled = idx === 0;
+      btnNext.disabled = idx === TOTAL_SLIDES - 1;
+    }
+
+    // Acciones globales
+    window.goToSlide = function (index) {
+      if (index < 0 || index >= TOTAL_SLIDES) return;
+      state.currentSlide = index;
+      // Al cambiar a un producto, mostrar por defecto el envase y la pestaña de beneficios
+      if (index >= 1 && index <= 8) {
+        state.vesselView = 'vessel';
+        state.detailTab = 'benefits';
+      }
+      renderCurrentSlide();
+    };
+
+    window.setVesselView = function (view) {
+      state.vesselView = view;
+      renderCurrentSlide();
+    };
+
+    window.setDetailTab = function (tab) {
+      state.detailTab = tab;
+      renderCurrentSlide();
+    };
+
+    window.setLineupFilter = function (filter) {
+      state.lineupFilter = filter;
+      renderCurrentSlide();
+    };
+
+    window.setPricingView = function (view) {
+      state.pricingView = view;
+      renderCurrentSlide();
+    };
+
+    // Eventos de botones del footer
+    btnPrev.addEventListener('click', () => goToSlide(state.currentSlide - 1));
+    btnNext.addEventListener('click', () => goToSlide(state.currentSlide + 1));
+
+    // Soporte silencioso de teclado (flechas izquierda/derecha)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        goToSlide(state.currentSlide + 1);
+      } else if (e.key === 'ArrowLeft') {
+        goToSlide(state.currentSlide - 1);
+      }
+    });
+
+    // Soporte silencioso de gestos táctiles (swipe horizontal en móvil)
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    stageEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    stageEl.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      const dy = e.changedTouches[0].screenY - touchStartY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        if (dx < 0) {
+          goToSlide(state.currentSlide + 1);
+        } else {
+          goToSlide(state.currentSlide - 1);
+        }
+      }
+    }, { passive: true });
+
+    // Inicializar presentación
+    renderCurrentSlide();
+  </script>
+</body>
+</html>

@@ -226,9 +226,16 @@
     const LOGO_INTRO_SRC = "logo.jpeg";
 
     // =====================================================================
-    // PEGA AQUÍ EL SRC DE LA IMAGEN DEL ENVASE PARA LA DIAPOSITIVA 3 (ej. "serum_hialuronico.png")
+    // NOMBRES DE LAS IMÁGENES DE ENVASE PARA LOS 8 PRODUCTOS (DIAPOSITIVAS 3 A 10)
     // =====================================================================
-    const ENVASE_P1_SRC = "serum-lumibelle-hidratante.png";
+    const ENVASE_P1_SRC = "serum-lumibelle-hidratante.png";    // Diapositiva 3: Serum Ácido Hialurónico
+    const ENVASE_P2_SRC = "serum-lumibelle-vitamina-c.png";    // Diapositiva 4: Serum Vitamina C
+    const ENVASE_P3_SRC = "crema-lumibelle-hidratante.png";    // Diapositiva 5: Crema facial hidratante
+    const ENVASE_P4_SRC = "crema-lumibelle-antiedad.png";      // Diapositiva 6: Crema facial antiedad
+    const ENVASE_P5_SRC = "contorno-ojos-lumibelle.png";       // Diapositiva 7: Contorno de ojos
+    const ENVASE_P6_SRC = "gel-limpiador-lumibelle.png";       // Diapositiva 8: Gel limpiador facial
+    const ENVASE_P7_SRC = "espuma-limpiadora-lumibelle.png";   // Diapositiva 9: Espuma limpiadora facial
+    const ENVASE_P8_SRC = "agua-micelar-lumibelle.png";        // Diapositiva 10: Agua micelar
 
     /**
      * Portafolio exacto de los 8 productos LUMIBELLE (Diapositivas 3 a 10).
@@ -309,6 +316,7 @@
         volume: '30 ml',
         hasBox: true,
         vesselType: 'dropper',
+        vesselImage: ENVASE_P2_SRC,
         vesselSpec: 'Vidrio transparente, hombro recto, gotero y casquete blancos',
         accent: '#D9822B',
         tint: '#FDF6EE',
@@ -374,6 +382,7 @@
         volume: '50 ml',
         hasBox: true,
         vesselType: 'jar',
+        vesselImage: ENVASE_P3_SRC,
         vesselSpec: 'Pote de vidrio transparente, tapa rosca blanca',
         accent: '#5B9AA0',
         tint: '#F1F7F8',
@@ -433,6 +442,7 @@
         volume: '50 ml',
         hasBox: true,
         vesselType: 'jar',
+        vesselImage: ENVASE_P4_SRC,
         vesselSpec: 'Pote de vidrio transparente, tapa rosca blanca',
         accent: '#7E5A7E',
         tint: '#F7F3F7',
@@ -493,6 +503,7 @@
         volume: '15 ml',
         hasBox: true,
         vesselType: 'airless',
+        vesselImage: ENVASE_P5_SRC,
         vesselSpec: 'Airless blanco, bomba blanca con sobretapa blanca',
         accent: '#5E8C6A',
         tint: '#F2F7F3',
@@ -558,6 +569,7 @@
         volume: '200 ml',
         hasBox: false,
         vesselType: 'pump',
+        vesselImage: ENVASE_P6_SRC,
         vesselSpec: 'PET transparente, hombro recto, válvula cremera sencilla blanca',
         accent: '#4D9A8E',
         tint: '#F0F8F7',
@@ -607,6 +619,7 @@
         volume: '200 ml',
         hasBox: false,
         vesselType: 'foamer',
+        vesselImage: ENVASE_P7_SRC,
         vesselSpec: 'PET transparente espumero, cilíndrico alargado, hombro recto, válvula espumera blanca con tapa transparente',
         accent: '#C27B88',
         tint: '#FBF3F5',
@@ -660,6 +673,7 @@
         volume: '400 ml',
         hasBox: false,
         vesselType: 'fliptop',
+        vesselImage: ENVASE_P8_SRC,
         vesselSpec: 'PET transparente, hombro recto, tapa flip top blanca',
         accent: '#B57E8F',
         tint: '#FAF3F6',
@@ -818,158 +832,16 @@
     }
 
     /**
-     * Maqueta arquitectónica detallada del envase (Diapositivas 3 a 10)
+     * Imagen del envase para cada producto (Diapositivas 3 a 10)
      */
     function renderVesselMockup(product) {
-      // Si el producto tiene imagen propia de envase (Diapositiva 3), mostrarla manteniendo el mismo tamaño
-      if (product.vesselImage) {
-        return `
-          <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
-            <img
-              src="${product.vesselImage}"
-              alt="${product.name}"
-              class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_14px_20px_rgba(24,24,27,0.14)]"
-            />
-          </div>
-        `;
-      }
-
-      const type = product.vesselType;
-
-      // 1. SERUM 30 ml: Vidrio transparente hombro recto, gotero y casquete blancos
-      if (type === 'dropper') {
-        return `
-          <div class="flex flex-col items-center justify-end py-2 fade-quick">
-            <!-- Bulbo del gotero (blanco puro) -->
-            <div class="w-7 h-10 rounded-t-full pure-white-part border-b-0"></div>
-            <!-- Casquete rosca (blanco puro) -->
-            <div class="w-12 h-6 rounded-t-[3px] pure-white-part flex flex-col justify-evenly px-1">
-              <div class="h-px bg-gray-200/70"></div>
-              <div class="h-px bg-gray-200/70"></div>
-            </div>
-            <!-- Cuello corto -->
-            <div class="w-10 h-2.5 glass-body border-y-0"></div>
-            <!-- Cuerpo de vidrio hombro recto -->
-            <div class="w-44 h-60 rounded-t-[10px] rounded-b-[12px] glass-body relative p-2.5 pt-4 flex items-center justify-center">
-              <!-- Pipeta interior sutil -->
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-5 bg-white/60 border-x border-gray-200/60"></div>
-              <!-- Etiqueta frontal -->
-              <div class="w-full h-[206px] relative z-10">
-                ${renderFrontLabel(product)}
-              </div>
-              <!-- Base gruesa de vidrio -->
-              <div class="absolute bottom-0 inset-x-0 h-3 rounded-b-[11px] bg-white/45 border-t border-gray-200/60"></div>
-            </div>
-            <div class="w-36 h-3 mt-1.5 rounded-full vessel-shadow"></div>
-          </div>
-        `;
-      }
-
-      // 2. CREMA 50 ml: Pote de vidrio transparente, tapa rosca blanca
-      if (type === 'jar') {
-        return `
-          <div class="flex flex-col items-center justify-end py-6 fade-quick">
-            <!-- Tapa rosca blanca pura -->
-            <div class="w-56 h-11 rounded-t-[10px] rounded-b-[2px] pure-white-part shadow-sm relative">
-              <div class="absolute bottom-1.5 inset-x-3 h-px bg-gray-200/70"></div>
-            </div>
-            <!-- Pote de vidrio transparente -->
-            <div class="w-60 h-48 rounded-t-[6px] rounded-b-[22px] glass-body relative px-3.5 py-3 flex items-center justify-center">
-              <div class="w-full h-[160px] relative z-10">
-                ${renderFrontLabel(product)}
-              </div>
-              <!-- Fondo grueso del pote -->
-              <div class="absolute bottom-0 inset-x-0 h-3.5 rounded-b-[21px] bg-white/50 border-t border-gray-200/60"></div>
-            </div>
-            <div class="w-48 h-3 mt-2 rounded-full vessel-shadow"></div>
-          </div>
-        `;
-      }
-
-      // 3. CONTORNO DE OJOS 15 ml: Airless blanco, bomba blanca con sobretapa blanca
-      if (type === 'airless') {
-        return `
-          <div class="flex flex-col items-center justify-end py-2 fade-quick">
-            <!-- Sobretapa blanca pura -->
-            <div class="w-36 h-12 rounded-t-[10px] pure-white-part border-b border-gray-300/80 relative flex items-end justify-center pb-1.5">
-              <span class="text-[7px] tracking-widest uppercase text-gray-300">Airless</span>
-            </div>
-            <!-- Collarín de bomba blanca -->
-            <div class="w-36 h-3 pure-white-part border-t-0"></div>
-            <!-- Cuerpo cilíndrico Airless blanco puro -->
-            <div class="w-36 h-60 rounded-b-[10px] pure-white-part border-t-0 relative p-2 pt-3 flex items-center justify-center shadow-[0_18px_34px_-18px_rgba(24,24,27,0.22)]">
-              <div class="w-full h-[212px]">
-                ${renderFrontLabel(product)}
-              </div>
-            </div>
-            <div class="w-32 h-3 mt-1.5 rounded-full vessel-shadow"></div>
-          </div>
-        `;
-      }
-
-      // 4. GEL LIMPIADOR 200 ml: PET transparente hombro recto, válvula cremera sencilla blanca
-      if (type === 'pump') {
-        return `
-          <div class="flex flex-col items-center justify-end py-1 fade-quick">
-            <!-- Cabezal y pico de válvula cremera blanca -->
-            <div class="relative flex items-start">
-              <div class="w-10 h-5 rounded-t-[6px] pure-white-part"></div>
-              <div class="w-8 h-2.5 mt-1 -ml-1 rounded-r-full pure-white-part"></div>
-            </div>
-            <!-- Cuello del dispensador -->
-            <div class="w-5 h-3.5 pure-white-part border-y-0"></div>
-            <!-- Rosca blanca -->
-            <div class="w-14 h-5 rounded-t-[3px] pure-white-part"></div>
-            <!-- Botella PET transparente hombro recto -->
-            <div class="w-44 h-64 rounded-t-[12px] rounded-b-[12px] glass-body relative p-2.5 pt-4 flex items-center justify-center">
-              <!-- Tubo interior sutil -->
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-6 bg-white/70"></div>
-              <div class="w-full h-[216px] relative z-10">
-                ${renderFrontLabel(product)}
-              </div>
-            </div>
-            <div class="w-36 h-3 mt-1.5 rounded-full vessel-shadow"></div>
-          </div>
-        `;
-      }
-
-      // 5. ESPUMA LIMPIADORA 200 ml: PET espumero alargado, válvula espumera blanca con tapa transparente
-      if (type === 'foamer') {
-        return `
-          <div class="flex flex-col items-center justify-end py-1 fade-quick">
-            <!-- Tapa transparente cubriendo la válvula espumera blanca -->
-            <div class="w-24 h-16 rounded-t-[10px] clear-overcap relative flex flex-col items-center justify-end pb-1">
-              <!-- Pulsador espumero blanco interior -->
-              <div class="w-12 h-8 rounded-t-[6px] pure-white-part mb-0.5"></div>
-              <div class="w-16 h-3 pure-white-part"></div>
-            </div>
-            <!-- Rosca blanca ancha del espumero -->
-            <div class="w-24 h-4 pure-white-part border-t-0"></div>
-            <!-- Cilindro PET alargado hombro recto -->
-            <div class="w-40 h-60 rounded-t-[10px] rounded-b-[12px] glass-body relative p-2.5 pt-3 flex items-center justify-center">
-              <div class="w-full h-[210px] relative z-10">
-                ${renderFrontLabel(product)}
-              </div>
-            </div>
-            <div class="w-32 h-3 mt-1.5 rounded-full vessel-shadow"></div>
-          </div>
-        `;
-      }
-
-      // 6. AGUA MICELAR 400 ml: PET transparente hombro recto, tapa flip top blanca
       return `
-        <div class="flex flex-col items-center justify-end py-1 fade-quick">
-          <!-- Tapa flip top blanca pura -->
-          <div class="w-16 h-8 rounded-t-[6px] pure-white-part relative flex items-center justify-center">
-            <div class="w-6 h-1.5 rounded-full bg-gray-200/80 mb-2"></div>
-          </div>
-          <!-- Botella PET 400 ml hombro recto -->
-          <div class="w-48 h-68 rounded-t-[14px] rounded-b-[14px] glass-body relative p-3 pt-4 flex items-center justify-center" style="height: 272px;">
-            <div class="w-full h-[222px] relative z-10">
-              ${renderFrontLabel(product)}
-            </div>
-          </div>
-          <div class="w-40 h-3 mt-1.5 rounded-full vessel-shadow"></div>
+        <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
+          <img
+            src="${product.vesselImage}"
+            alt="${product.name}"
+            class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_14px_20px_rgba(24,24,27,0.14)]"
+          />
         </div>
       `;
     }

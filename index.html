@@ -225,6 +225,11 @@
     // =====================================================================
     const LOGO_INTRO_SRC = "logo.jpeg";
 
+    // =====================================================================
+    // PEGA AQUÍ EL SRC DE LA IMAGEN DEL ENVASE PARA LA DIAPOSITIVA 3 (ej. "serum_hialuronico.png")
+    // =====================================================================
+    const ENVASE_P1_SRC = "Sérum facial Lumibelle hidratante.png";
+
     /**
      * Portafolio exacto de los 8 productos LUMIBELLE (Diapositivas 3 a 10).
      */
@@ -238,6 +243,7 @@
         volume: '30 ml',
         hasBox: true,
         vesselType: 'dropper',
+        vesselImage: ENVASE_P1_SRC,
         vesselSpec: 'Vidrio transparente, hombro recto, gotero y casquete blancos',
         accent: '#4A89B8',
         tint: '#F0F6FA',
@@ -815,6 +821,19 @@
      * Maqueta arquitectónica detallada del envase (Diapositivas 3 a 10)
      */
     function renderVesselMockup(product) {
+      // Si el producto tiene imagen propia de envase (Diapositiva 3), mostrarla manteniendo el mismo tamaño
+      if (product.vesselImage) {
+        return `
+          <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
+            <img
+              src="${product.vesselImage}"
+              alt="${product.name}"
+              class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_14px_20px_rgba(24,24,27,0.14)]"
+            />
+          </div>
+        `;
+      }
+
       const type = product.vesselType;
 
       // 1. SERUM 30 ml: Vidrio transparente hombro recto, gotero y casquete blancos

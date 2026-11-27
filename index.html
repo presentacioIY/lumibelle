@@ -238,8 +238,9 @@
     const ENVASE_P8_SRC = "agua-micelar-lumibelle.png";        // Diapositiva 10: Agua micelar
 
     // =====================================================================
-    // IMAGEN DE CAJA PLEGADIZA (DIAPOSITIVA 4)
+    // IMÁGENES DE CAJA PLEGADIZA (DIAPOSITIVAS 3 Y 4)
     // =====================================================================
+    const CAJA_P1_SRC = "caja-serum-lumibelle-hidratante.png"; // Diapositiva 3: Caja plegadiza Serum Ácido Hialurónico
     const CAJA_P2_SRC = "caja-serum-lumibelle-vitamina-c.png"; // Diapositiva 4: Caja plegadiza Serum Vitamina C
 
     /**
@@ -256,6 +257,7 @@
         hasBox: true,
         vesselType: 'dropper',
         vesselImage: ENVASE_P1_SRC,
+        boxImage: CAJA_P1_SRC,
         vesselSpec: 'Vidrio transparente, hombro recto, gotero y casquete blancos',
         accent: '#4A89B8',
         tint: '#F0F6FA',
@@ -853,12 +855,12 @@
     }
 
     /**
-     * Maqueta de Caja Plegadiza (imagen en Diapositiva 4, CSS en los demás productos con caja)
+     * Maqueta de Caja Plegadiza (imagen en Diapositivas 3 y 4, CSS en los demás productos con caja)
      */
     function renderFoldingBoxMockup(product) {
       if (!product.box) return '';
 
-      // Diapositiva 04 (Serum Vitamina C): mostrar imagen con el mismo tamaño que el envase
+      // Diapositivas 03 y 04: mostrar imagen con el mismo tamaño que el envase
       if (product.boxImage) {
         return `
           <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">

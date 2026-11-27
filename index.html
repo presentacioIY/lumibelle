@@ -418,51 +418,6 @@
       .lg\:col-span-5 { grid-column: span 5 / span 5; }
       .lg\:col-span-7 { grid-column: span 7 / span 7; }
     }
-
-    /* =====================================================================
-       ESTILOS DE EXPORTACIÓN A PDF (13 DIAPOSITIVAS EN HORIZONTAL)
-       ===================================================================== */
-    @page {
-      size: landscape;
-      margin: 0;
-    }
-
-    @media print {
-      html, body {
-        background-color: #FAF9F6 !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        overflow: visible !important;
-      }
-
-      #app {
-        display: none !important;
-      }
-
-      #print-deck {
-        display: block !important;
-        background-color: #FAF9F6 !important;
-      }
-
-      .print-slide {
-        width: 100vw;
-        height: 100vh;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #FAF9F6 !important;
-        page-break-after: always;
-        break-after: page;
-        overflow: hidden;
-      }
-
-      .print-slide:last-child {
-        page-break-after: auto;
-        break-after: auto;
-      }
-    }
   </style>
 </head>
 <body class="bg-porcelain text-ink font-sans selection:bg-ink selection:text-white overflow-x-hidden">
@@ -523,28 +478,10 @@
             <path d="M7.5 4.5L13 10l-5.5 5.5" />
           </svg>
         </button>
-
-        <!-- Botón discreto para exportar toda la presentación a PDF -->
-        <button
-          id="btn-pdf"
-          type="button"
-          onclick="exportToPDF()"
-          class="ml-1 sm:ml-2 px-2.5 py-1.5 rounded-full border border-hairline bg-white/80 hover:bg-white text-[11px] font-medium text-muted hover:text-ink flex items-center gap-1.5 transition-colors shrink-0"
-          title="Guardar presentación completa en PDF"
-          aria-label="Guardar presentación en PDF"
-        >
-          <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5M4 15.5h12" />
-          </svg>
-          <span>PDF</span>
-        </button>
       </div>
     </footer>
 
   </div>
-
-  <!-- Contenedor oculto en pantalla que renderiza las 13 diapositivas al exportar a PDF -->
-  <div id="print-deck" class="hidden" aria-hidden="true"></div>
 
   <!-- ==================== DATOS Y LÓGICA DE LA PRESENTACIÓN ==================== -->
   <script>
@@ -1615,150 +1552,6 @@
         </section>
       `;
     }
-
-    /**
-     * Ficha completa de producto para PDF (muestra envase, caja plegadiza, beneficios e ingredientes en 1 página)
-     */
-    function renderPrintProductSlide(product) {
-      return `
-        <section class="max-w-6xl w-full mx-auto px-8 py-4">
-          <div class="grid grid-cols-12 gap-6 items-center">
-            <!-- Columna izquierda: Envase (y Caja plegadiza si aplica) + Precios -->
-            <div class="col-span-4 flex flex-col gap-3">
-              <div class="bg-white border border-hairline rounded-3xl p-4 flex flex-col items-center justify-center h-[350px]">
-                ${product.boxImage ? `
-                  <div class="w-full h-full grid grid-cols-2 gap-2 items-center">
-                    <div class="flex flex-col items-center justify-center h-full">
-                      <img src="${product.vesselImage}" alt="${product.name}" class="max-h-[265px] w-auto object-contain" />
-                      <span class="text-[9px] uppercase tracking-wider text-muted mt-1.5">Envase</span>
-                    </div>
-                    <div class="flex flex-col items-center justify-center h-full">
-                      <img src="${product.boxImage}" alt="Caja ${product.name}" class="max-h-[265px] w-auto object-contain" />
-                      <span class="text-[9px] uppercase tracking-wider text-muted mt-1.5">Caja plegadiza</span>
-                    </div>
-                  </div>
-                ` : `
-                  <img src="${product.vesselImage}" alt="${product.name}" class="max-h-[295px] w-auto object-contain" />
-                `}
-              </div>
-
-              <div class="bg-white border border-hairline rounded-2xl p-3 grid grid-cols-2 gap-2.5 text-center">
-                <div class="p-2 rounded-xl" style="background-color: ${product.tint};">
-                  <span class="block text-[9px] font-medium uppercase tracking-wider text-muted mb-0.5">PVP Sugerido</span>
-                  <span class="text-base font-semibold tabular-nums" style="color: ${product.accent};">${product.pvp}</span>
-                </div>
-                <div class="p-2 rounded-xl bg-porcelain/70">
-                  <span class="block text-[9px] font-medium uppercase tracking-wider text-muted mb-0.5">Costo IH</span>
-                  <span class="text-base font-semibold tabular-nums text-ink">${product.cost}</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Columna derecha: Encabezado + Beneficios e Ingredientes simultáneos -->
-            <div class="col-span-8 flex flex-col gap-3.5">
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold" style="background-color: ${product.tint}; color: ${product.accent};">
-                    Referencia ${product.refNum}
-                  </span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-white border border-hairline text-ink">
-                    ${product.volume}
-                  </span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-medium ${product.hasBox ? 'bg-ink text-white' : 'bg-white border border-hairline text-muted'}">
-                    ${product.hasBox ? 'Con caja plegadiza' : 'Sin caja'}
-                  </span>
-                </div>
-
-                <div class="pl-3.5 border-l-[3px]" style="border-color: ${product.accent};">
-                  <h2 class="font-serif text-3xl font-semibold text-ink leading-tight">${product.name}</h2>
-                  <p class="text-xs text-muted mt-0.5">${product.vesselSpec}</p>
-                </div>
-              </div>
-
-              <div class="bg-white border border-hairline rounded-3xl p-4 grid grid-cols-2 gap-4">
-                <!-- Subcolumna Beneficios -->
-                <div>
-                  <h3 class="text-[10px] font-semibold tracking-eyebrow uppercase text-muted pb-2 mb-2 border-b border-hairline">
-                    Beneficios
-                  </h3>
-                  <div class="flex flex-wrap gap-1.5 mb-2">
-                    ${product.label.actives.map(a => `
-                      <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold" style="background-color: ${product.tint}; color: ${product.accent};">
-                        ${a}
-                      </span>
-                    `).join('')}
-                  </div>
-                  <ul class="space-y-1.5">
-                    ${product.benefits.map(b => `
-                      <li class="flex items-start gap-2 text-[11px] text-ink leading-snug p-1.5 rounded-lg bg-porcelain/70 border border-hairline/70">
-                        <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
-                        <span>${b}</span>
-                      </li>
-                    `).join('')}
-                  </ul>
-                </div>
-
-                <!-- Subcolumna Ingredientes -->
-                <div>
-                  <h3 class="text-[10px] font-semibold tracking-eyebrow uppercase text-muted pb-2 mb-2 border-b border-hairline">
-                    Ingredientes que lo hacen especial
-                  </h3>
-                  <div class="space-y-1.5">
-                    ${product.ingredients.map(ing => `
-                      <div class="p-2 rounded-lg bg-porcelain/70 border border-hairline/80">
-                        <div class="flex items-center gap-1.5 mb-0.5">
-                          <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
-                          <h4 class="text-[11px] font-semibold text-ink leading-tight">${ing.name}</h4>
-                        </div>
-                        <p class="text-[10px] text-muted leading-snug pl-3">${ing.desc}</p>
-                      </div>
-                    `).join('')}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      `;
-    }
-
-    /**
-     * Construye las 13 diapositivas completas en el contenedor de impresión
-     */
-    function preparePrintDeck() {
-      const printDeckEl = document.getElementById('print-deck');
-      if (!printDeckEl) return;
-
-      const prevFilter = state.lineupFilter;
-      state.lineupFilter = 'all';
-
-      const slidesHtml = [
-        renderSlide1Cover(),
-        renderSlide2Intro(),
-        ...PRODUCTS.map(p => renderPrintProductSlide(p)),
-        renderSlide10Lineup(),
-        renderSlide11Farmatodo(),
-        renderSlide13Final()
-      ];
-
-      state.lineupFilter = prevFilter;
-
-      printDeckEl.innerHTML = slidesHtml
-        .map(slide => `<div class="print-slide">${slide}</div>`)
-        .join('');
-    }
-
-    /**
-     * Dispara la ventana nativa de exportación a PDF con las 13 diapositivas listas
-     */
-    window.exportToPDF = function () {
-      preparePrintDeck();
-      setTimeout(() => {
-        window.print();
-      }, 150);
-    };
-
-    window.addEventListener('beforeprint', preparePrintDeck);
 
     /* =====================================================================
        CONTROLADOR DE RENDERIZADO Y PROGRESO SEGMENTADO

@@ -1201,19 +1201,15 @@
                 </div>
               </div>
 
-              <!-- Tarjeta compacta de precios -->
-              <div class="bg-white border border-hairline rounded-2xl p-4 grid grid-cols-3 gap-2 text-center">
-                <div class="p-2 rounded-xl" style="background-color: ${product.tint};">
+              <!-- Tarjeta compacta de precios (solo PVP Sugerido y Costo IH) -->
+              <div class="bg-white border border-hairline rounded-2xl p-4 grid grid-cols-2 gap-3 text-center">
+                <div class="p-2.5 rounded-xl" style="background-color: ${product.tint};">
                   <span class="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">PVP Sugerido</span>
                   <span class="text-base sm:text-lg font-semibold tabular-nums" style="color: ${product.accent};">${product.pvp}</span>
                 </div>
-                <div class="p-2 rounded-xl bg-porcelain/70">
+                <div class="p-2.5 rounded-xl bg-porcelain/70">
                   <span class="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">Costo IH</span>
-                  <span class="text-sm sm:text-base font-semibold tabular-nums text-ink">${product.cost}</span>
-                </div>
-                <div class="p-2 rounded-xl bg-porcelain/70">
-                  <span class="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">Ref. Farmatodo</span>
-                  <span class="text-xs sm:text-sm font-semibold tabular-nums text-ink leading-tight block mt-0.5">${product.refFarmatodo}</span>
+                  <span class="text-base sm:text-lg font-semibold tabular-nums text-ink">${product.cost}</span>
                 </div>
               </div>
             </div>

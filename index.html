@@ -89,57 +89,12 @@
       border-radius: 9999px;
     }
 
-    /* =====================================================================
-       MAQUETAS ARQUITECTÓNICAS EN CSS PURO (BODEGÓN Y CAJAS SIN IMAGEN)
-       ===================================================================== */
-
-    /* Efecto de vidrio / PET transparente con brillo vertical realista */
-    .glass-body {
-      background: linear-gradient(
-        90deg,
-        rgba(232, 236, 240, 0.55) 0%,
-        rgba(255, 255, 255, 0.92) 16%,
-        rgba(246, 248, 250, 0.42) 48%,
-        rgba(255, 255, 255, 0.82) 84%,
-        rgba(220, 226, 232, 0.55) 100%
-      );
-      border: 1px solid rgba(203, 210, 217, 0.85);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        inset 0 -8px 14px rgba(190, 198, 206, 0.25),
-        0 18px 34px -18px rgba(24, 24, 27, 0.22);
-    }
-
-    /* Superficie blanca pura para tapas, goteros, válvulas, bombas y envase airless */
-    .pure-white-part {
-      background: linear-gradient(
-        90deg,
-        #F2F1EE 0%,
-        #FFFFFF 24%,
-        #FFFFFF 72%,
-        #ECEAE5 100%
-      );
-      border: 1px solid #DFDDD8;
-    }
-
-    /* Tapa transparente (espumero) */
-    .clear-overcap {
-      background: linear-gradient(
-        90deg,
-        rgba(240, 244, 248, 0.55) 0%,
-        rgba(255, 255, 255, 0.85) 26%,
-        rgba(245, 247, 250, 0.3) 65%,
-        rgba(255, 255, 255, 0.72) 100%
-      );
-      border: 1px solid rgba(203, 210, 217, 0.8);
-    }
-
-    /* Sombra de piso suave debajo de cada envase */
+    /* Sombra de piso suave debajo de cada envase en el bodegón */
     .vessel-shadow {
       background: radial-gradient(ellipse at center, rgba(24, 24, 27, 0.16) 0%, rgba(24, 24, 27, 0) 72%);
     }
 
-    /* Efecto sutil de pliegue lateral para cajas plegadizas */
+    /* Efecto sutil de pliegue lateral para cajas plegadizas sin imagen */
     .folding-box-card {
       background: #FFFFFF;
       border: 1px solid #E5E2DC;
@@ -184,16 +139,16 @@
           <div class="text-[11px] font-medium tabular-nums tracking-widest text-muted">
             <span id="counter-current" class="text-ink font-semibold">01</span>
             <span class="mx-1 text-gray-300">/</span>
-            <span id="counter-total">13</span>
+            <span id="counter-total">14</span>
           </div>
 
           <div
             id="progress-segments"
-            class="w-full grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1 sm:gap-1.5 items-center"
+            class="w-full grid grid-cols-[repeat(14,minmax(0,1fr))] gap-1 sm:gap-1.5 items-center"
             role="tablist"
             aria-label="Progreso de diapositivas"
           >
-            <!-- 13 segmentos interactivos generados por JS -->
+            <!-- 14 segmentos interactivos generados por JS -->
           </div>
         </div>
 
@@ -216,10 +171,11 @@
   <!-- ==================== DATOS Y LÓGICA DE LA PRESENTACIÓN ==================== -->
   <script>
     // =====================================================================
-    // IMAGEN DE PORTADA (DIAPOSITIVA 1) Y LOGO DE INTRODUCCIÓN (DIAPOSITIVA 2)
+    // IMAGEN DE PORTADA (DIAPOSITIVA 1), LOGO (DIAPOSITIVA 2) Y CIERRE (DIAPOSITIVA 14)
     // =====================================================================
     const PORTADA_SRC = "lumibelle_ppt.jpeg";
     const LOGO_INTRO_SRC = "logo.jpeg";
+    const FINAL_SLIDE_SRC = "pptfinal.jpeg";
 
     // =====================================================================
     // IMÁGENES DE ENVASE PARA LOS 8 PRODUCTOS (DIAPOSITIVAS 3 A 10)
@@ -746,11 +702,11 @@
       { productId: 'p7', lumibelle: 'Espuma limpiadora', ref: 'No se encontró espuma de marca propia Farmatodo', vol: '—', price: '—' }
     ];
 
-    const TOTAL_SLIDES = 13;
+    const TOTAL_SLIDES = 14;
 
     // Estado de la aplicación
     const state = {
-      currentSlide: 0,      // 0..12
+      currentSlide: 0,      // 0..13
       vesselView: 'vessel', // 'vessel' | 'box'
       detailTab: 'benefits',// 'benefits' | 'ingredients'
       lineupFilter: 'all',  // 'all' | 'box' | 'nobox'
@@ -775,32 +731,6 @@
       return '#18181B';
     }
 
-    /* =====================================================================
-       MAQUETAS ARQUITECTÓNICAS PARA BODEGÓN Y CAJAS SIN IMAGEN
-       ===================================================================== */
-
-    /**
-     * Etiqueta frontal compacta para el bodegón de la línea completa
-     */
-    function renderFrontLabel(product, compact = false) {
-      if (compact) {
-        return `
-          <div class="w-full h-full bg-white/95 rounded-[4px] border border-hairline/90 overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="h-1.5 w-full shrink-0" style="background-color: ${product.accent};"></div>
-            <div class="px-1.5 py-1.5 flex-1 flex flex-col justify-between text-center">
-              <div class="font-serif text-[7px] font-semibold tracking-[0.2em] uppercase text-ink leading-none">LUMIBELLE</div>
-              <div class="my-auto py-0.5">
-                <p class="text-[7px] font-semibold text-ink leading-[1.15] line-clamp-2">${product.shortName}</p>
-                <p class="text-[5.5px] font-medium mt-0.5 truncate" style="color: ${product.accent};">${product.label.actives[0]}</p>
-              </div>
-              <div class="text-[5.5px] text-muted border-t border-hairline pt-0.5">${product.volume}</div>
-            </div>
-          </div>
-        `;
-      }
-      return '';
-    }
-
     /**
      * Imagen del envase para cada producto (Diapositivas 3 a 10)
      */
@@ -822,7 +752,6 @@
     function renderFoldingBoxMockup(product) {
       if (!product.box) return '';
 
-      // Diapositivas 03, 04, 05, 06 y 07: mostrar imagen con el mismo tamaño que el envase
       if (product.boxImage) {
         return `
           <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
@@ -838,31 +767,23 @@
       return `
         <div class="w-full max-w-[300px] mx-auto py-1 fade-quick">
           <div class="folding-box-card rounded-[10px] overflow-hidden">
-            <!-- Banda superior de color -->
             <div class="h-2.5 w-full" style="background-color: ${product.accent};"></div>
-
             <div class="p-4 sm:p-5 text-left">
-              <!-- Encabezado caja -->
               <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-hairline">
                 <span class="font-serif text-sm font-semibold tracking-[0.24em] uppercase text-ink">LUMIBELLE</span>
                 <span class="text-[9px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full" style="background-color: ${product.tint}; color: ${product.accent};">
                   Caja plegadiza
                 </span>
               </div>
-
               <h4 class="text-sm font-semibold text-ink leading-snug mb-1">${product.name}</h4>
               <div class="flex flex-wrap gap-x-3 gap-y-0.5 mb-2.5">
                 ${product.label.actives.map(a => `
                   <span class="text-[10.5px] font-semibold" style="color: ${product.accent};">${a}</span>
                 `).join('')}
               </div>
-
-              <!-- Frase especial -->
               <p class="font-serif italic text-[13.5px] leading-snug text-ink p-2.5 rounded-lg mb-3 border border-hairline" style="background-color: ${product.tint};">
                 "${product.box.phrase}"
               </p>
-
-              <!-- Beneficios completos -->
               <ul class="space-y-1 mb-3">
                 ${product.benefits.map(b => `
                   <li class="flex items-start gap-1.5 text-[10px] text-muted leading-tight">
@@ -871,8 +792,6 @@
                   </li>
                 `).join('')}
               </ul>
-
-              <!-- Sección Con -->
               <div class="pt-2.5 border-t border-hairline">
                 <p class="text-[9px] font-semibold tracking-eyebrow uppercase text-muted mb-1.5">Con</p>
                 <div class="flex flex-wrap gap-1 mb-2.5">
@@ -915,7 +834,7 @@
     }
 
     /* =====================================================================
-       RENDERIZADORES DE LAS 13 DIAPOSITIVAS
+       RENDERIZADORES DE LAS 14 DIAPOSITIVAS
        ===================================================================== */
 
     /**
@@ -1453,6 +1372,21 @@
       `;
     }
 
+    /**
+     * Diapositiva 14: Cierre únicamente con la imagen
+     */
+    function renderSlide14Final() {
+      return `
+        <section class="w-full h-full flex items-center justify-center p-2 sm:p-4 slide-enter">
+          <img
+            src="${FINAL_SLIDE_SRC}"
+            alt="LUMIBELLE Skincare — Cierre de presentación"
+            class="max-w-full max-h-[calc(100dvh-5.5rem)] w-auto h-auto object-contain rounded-2xl shadow-[0_24px_60px_-32px_rgba(24,24,27,0.12)]"
+          />
+        </section>
+      `;
+    }
+
     /* =====================================================================
        CONTROLADOR DE RENDERIZADO Y PROGRESO SEGMENTADO
        ===================================================================== */
@@ -1496,8 +1430,10 @@
         html = renderSlide10Lineup();
       } else if (idx === 11) {
         html = renderSlide11Farmatodo();
-      } else {
+      } else if (idx === 12) {
         html = renderSlide12Pricing();
+      } else {
+        html = renderSlide14Final();
       }
 
       stageEl.innerHTML = html;

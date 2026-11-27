@@ -418,6 +418,58 @@
       .lg\:col-span-5 { grid-column: span 5 / span 5; }
       .lg\:col-span-7 { grid-column: span 7 / span 7; }
     }
+
+    /* =====================================================================
+       ESTILOS DE EXPORTACIÓN AUTOMÁTICA A PDF (13 DIAPOSITIVAS EN HORIZONTAL)
+       ===================================================================== */
+    .col-span-5 { grid-column: span 5 / span 5; }
+    .col-span-7 { grid-column: span 7 / span 7; }
+    .grid-cols-8 { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+    .h-\[340px\] { height: 340px; }
+    .max-h-\[245px\] { max-height: 245px; }
+    .max-h-\[275px\] { max-height: 275px; }
+
+    @page {
+      size: landscape;
+      margin: 0;
+    }
+
+    @media print {
+      html, body {
+        background-color: #FAF9F6 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        overflow: visible !important;
+      }
+
+      #app {
+        display: none !important;
+      }
+
+      #print-deck {
+        display: block !important;
+        background-color: #FAF9F6 !important;
+      }
+
+      .print-slide {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #FAF9F6 !important;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+      }
+
+      .print-slide:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
   </style>
 </head>
 <body class="bg-porcelain text-ink font-sans selection:bg-ink selection:text-white overflow-x-hidden">
@@ -482,6 +534,9 @@
     </footer>
 
   </div>
+
+  <!-- Contenedor oculto en pantalla que arma las 13 diapositivas completas al guardar como PDF -->
+  <div id="print-deck" class="hidden" aria-hidden="true"></div>
 
   <!-- ==================== DATOS Y LÓGICA DE LA PRESENTACIÓN ==================== -->
   <script>
@@ -1552,6 +1607,246 @@
         </section>
       `;
     }
+
+    /**
+     * Ficha unificada de producto para PDF (Diapositivas 3 a 10):
+     * Une Envase + Caja plegadiza lado a lado, y Beneficios + Ingredientes simultáneos.
+     */
+    function renderPrintProductSlide(product) {
+      return `
+        <section class="max-w-6xl w-full mx-auto px-8 py-4">
+          <div class="grid grid-cols-12 gap-6 items-center">
+            <!-- Columna izquierda: Envase + Caja plegadiza unidos + Precios -->
+            <div class="col-span-5 flex flex-col gap-3">
+              <div class="bg-white border border-hairline rounded-3xl p-4 flex flex-col justify-between h-[340px] relative overflow-hidden">
+                <div
+                  class="absolute -top-24 -right-24 w-56 h-56 rounded-full pointer-events-none opacity-45 blur-3xl"
+                  style="background-color: ${product.tint};"
+                ></div>
+
+                <div class="w-full flex items-center justify-between gap-2 mb-2 relative z-10">
+                  <span class="text-[9.5px] font-semibold tracking-eyebrow uppercase text-muted">
+                    ${product.boxImage ? 'Envase y empaque secundario' : 'Envase de referencia'}
+                  </span>
+                  ${!product.hasBox ? `
+                    <span class="text-[9.5px] font-medium text-muted px-2.5 py-0.5 rounded-full bg-porcelain border border-hairline">
+                      Sin caja
+                    </span>
+                  ` : ''}
+                </div>
+
+                <div class="w-full flex-1 flex items-center justify-center relative z-10">
+                  ${product.boxImage ? `
+                    <div class="w-full h-full grid grid-cols-2 gap-3 items-center">
+                      <div class="flex flex-col items-center justify-center h-full">
+                        <img
+                          src="${product.vesselImage}"
+                          alt="Envase — ${product.name}"
+                          class="max-h-[245px] w-auto max-w-full object-contain drop-shadow-[0_16px_24px_rgba(24,24,27,0.14)]"
+                        />
+                        <span class="text-[9.5px] font-medium uppercase tracking-wider text-muted mt-2">Envase</span>
+                      </div>
+                      <div class="flex flex-col items-center justify-center h-full">
+                        <img
+                          src="${product.boxImage}"
+                          alt="Caja plegadiza — ${product.name}"
+                          class="max-h-[245px] w-auto max-w-full object-contain drop-shadow-[0_16px_24px_rgba(24,24,27,0.14)]"
+                        />
+                        <span class="text-[9.5px] font-medium uppercase tracking-wider text-muted mt-2">Caja plegadiza</span>
+                      </div>
+                    </div>
+                  ` : `
+                    <img
+                      src="${product.vesselImage}"
+                      alt="${product.name}"
+                      class="max-h-[275px] w-auto max-w-full object-contain drop-shadow-[0_16px_24px_rgba(24,24,27,0.14)]"
+                    />
+                  `}
+                </div>
+              </div>
+
+              <!-- Tarjeta compacta de precios -->
+              <div class="bg-white border border-hairline rounded-2xl p-3 grid grid-cols-2 gap-2.5 text-center">
+                <div class="p-2 rounded-xl" style="background-color: ${product.tint};">
+                  <span class="block text-[9.5px] font-medium uppercase tracking-wider text-muted mb-0.5">PVP Sugerido</span>
+                  <span class="text-base font-semibold tabular-nums" style="color: ${product.accent};">${product.pvp}</span>
+                </div>
+                <div class="p-2 rounded-xl bg-porcelain/70">
+                  <span class="block text-[9.5px] font-medium uppercase tracking-wider text-muted mb-0.5">Costo IH</span>
+                  <span class="text-base font-semibold tabular-nums text-ink">${product.cost}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha: Encabezado + Beneficios e Ingredientes simultáneos -->
+            <div class="col-span-7 flex flex-col gap-3.5">
+              <div class="space-y-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span
+                    class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide"
+                    style="background-color: ${product.tint}; color: ${product.accent};"
+                  >
+                    Referencia ${product.refNum}
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-white border border-hairline text-ink">
+                    ${product.volume}
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-medium ${product.hasBox ? 'bg-ink text-white' : 'bg-white border border-hairline text-muted'}">
+                    ${product.hasBox ? 'Con caja plegadiza' : 'Sin caja'}
+                  </span>
+                </div>
+
+                <div class="pl-3.5 border-l-[3px]" style="border-color: ${product.accent};">
+                  <h2 class="font-serif text-3xl font-semibold text-ink leading-tight">
+                    ${product.name}
+                  </h2>
+                  <p class="text-xs text-muted mt-0.5">
+                    ${product.vesselSpec}
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white border border-hairline rounded-3xl p-4 grid grid-cols-2 gap-4">
+                <!-- Subcolumna Beneficios -->
+                <div>
+                  <h3 class="text-[10px] font-semibold tracking-eyebrow uppercase text-muted pb-2 mb-2 border-b border-hairline">
+                    Beneficios
+                  </h3>
+                  <div class="flex flex-wrap gap-1.5 mb-2">
+                    ${product.label.actives.map(a => `
+                      <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold" style="background-color: ${product.tint}; color: ${product.accent};">
+                        ${a}
+                      </span>
+                    `).join('')}
+                  </div>
+                  <ul class="space-y-1.5">
+                    ${product.benefits.map(b => `
+                      <li class="flex items-start gap-2 text-[10.5px] text-ink leading-snug p-1.5 rounded-lg bg-porcelain/70 border border-hairline/70">
+                        <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
+                        <span>${b}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+
+                <!-- Subcolumna Ingredientes -->
+                <div>
+                  <h3 class="text-[10px] font-semibold tracking-eyebrow uppercase text-muted pb-2 mb-2 border-b border-hairline">
+                    Ingredientes que lo hacen especial
+                  </h3>
+                  <div class="space-y-1.5">
+                    ${product.ingredients.map(ing => `
+                      <div class="p-2 rounded-lg bg-porcelain/70 border border-hairline/80">
+                        <div class="flex items-center gap-1.5 mb-0.5">
+                          <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
+                          <h4 class="text-[10.5px] font-semibold text-ink leading-tight">${ing.name}</h4>
+                        </div>
+                        <p class="text-[9.5px] text-muted leading-snug pl-3">${ing.desc}</p>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /**
+     * Diapositiva 11 para PDF: Portafolio completo (8 referencias con resumen de caja/sin caja)
+     */
+    function renderPrintLineupSlide() {
+      return `
+        <section class="max-w-7xl w-full mx-auto px-8 py-6">
+          <div class="flex flex-row items-end justify-between gap-4 mb-5">
+            <div>
+              <p class="text-[11px] font-semibold tracking-eyebrow uppercase text-muted mb-1">
+                Línea Completa · Unidad Gráfica
+              </p>
+              <h2 class="font-serif text-4xl font-semibold text-ink leading-tight">
+                Portafolio LUMIBELLE
+              </h2>
+              <p class="text-sm text-muted mt-1">
+                Tapas y dispensadores en blanco puro, tipografía coherente y acento por activo.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-medium bg-white border border-hairline text-ink">
+                Todos (8)
+              </span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-medium bg-ink text-white">
+                Con caja plegadiza (5)
+              </span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-medium bg-white border border-hairline text-muted">
+                Sin caja (3)
+              </span>
+            </div>
+          </div>
+
+          <div class="bg-white border border-hairline rounded-3xl p-6 shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)]">
+            <div class="grid grid-cols-8 gap-3 items-end pb-5 border-b border-hairline">
+              ${PRODUCTS.map(p => `
+                <div class="flex flex-col items-center justify-end text-center pt-2">
+                  <div class="flex items-end justify-center min-h-[196px]">
+                    ${renderLineupVessel(p)}
+                  </div>
+                  <div class="w-16 h-2 mt-1 rounded-full vessel-shadow"></div>
+                  <div class="mt-3 space-y-0.5 px-1">
+                    <span class="block text-[11px] font-semibold text-ink leading-tight">
+                      ${p.shortName}
+                    </span>
+                    <span class="block text-[10px] text-muted">${p.volume} · <strong class="text-ink">${p.pvp}</strong></span>
+                    <span
+                      class="inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-medium"
+                      style="background-color: ${p.tint}; color: ${p.accent};"
+                    >
+                      ${p.hasBox ? 'Con caja' : 'Sin caja'}
+                    </span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="pt-4 flex items-center justify-between gap-3 text-xs text-muted">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-white border border-gray-300"></span>
+                <span>Cierres 100% en blanco</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-serif tracking-brand uppercase text-ink font-semibold">LUMIBELLE</span>
+                <span>· Identidad clínica inspirada en Farmatodo</span>
+              </div>
+              <span>PVP entre <strong class="text-ink">$19.900 y $44.900</strong></span>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /**
+     * Genera las 13 diapositivas completas en #print-deck justo antes de imprimir/guardar PDF
+     */
+    function preparePrintDeck() {
+      const printDeckEl = document.getElementById('print-deck');
+      if (!printDeckEl) return;
+
+      const slidesHtml = [
+        renderSlide1Cover(),
+        renderSlide2Intro(),
+        ...PRODUCTS.map(p => renderPrintProductSlide(p)),
+        renderPrintLineupSlide(),
+        renderSlide11Farmatodo(),
+        renderSlide13Final()
+      ];
+
+      printDeckEl.innerHTML = slidesHtml
+        .map(slide => `<div class="print-slide">${slide}</div>`)
+        .join('');
+    }
+
+    window.addEventListener('beforeprint', preparePrintDeck);
 
     /* =====================================================================
        CONTROLADOR DE RENDERIZADO Y PROGRESO SEGMENTADO

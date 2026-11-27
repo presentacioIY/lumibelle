@@ -234,10 +234,12 @@
     const ENVASE_P8_SRC = "agua-micelar-lumibelle.png";        // Diapositiva 10: Agua micelar
 
     // =====================================================================
-    // IMÁGENES DE CAJA PLEGADIZA (DIAPOSITIVAS 3, 4 Y 7)
+    // IMÁGENES DE CAJA PLEGADIZA (DIAPOSITIVAS 3, 4, 5, 6 Y 7)
     // =====================================================================
     const CAJA_P1_SRC = "caja-serum-lumibelle-hidratante.png"; // Diapositiva 3: Caja plegadiza Serum Ácido Hialurónico
     const CAJA_P2_SRC = "caja-serum-lumibelle-vitamina-c.png"; // Diapositiva 4: Caja plegadiza Serum Vitamina C
+    const CAJA_P3_SRC = "caja-crema-lumibelle-hidratante.png"; // Diapositiva 5: Caja plegadiza Crema facial hidratante
+    const CAJA_P4_SRC = "caja-crema-lumibelle-antiedad.png";   // Diapositiva 6: Caja plegadiza Crema facial antiedad
     const CAJA_P5_SRC = "caja-contorno-ojos-lumibelle.png";    // Diapositiva 7: Caja plegadiza Contorno de ojos
 
     /**
@@ -388,6 +390,7 @@
         hasBox: true,
         vesselType: 'jar',
         vesselImage: ENVASE_P3_SRC,
+        boxImage: CAJA_P3_SRC,
         vesselSpec: 'Pote de vidrio transparente, tapa rosca blanca',
         accent: '#5B9AA0',
         tint: '#F1F7F8',
@@ -448,6 +451,7 @@
         hasBox: true,
         vesselType: 'jar',
         vesselImage: ENVASE_P4_SRC,
+        boxImage: CAJA_P4_SRC,
         vesselSpec: 'Pote de vidrio transparente, tapa rosca blanca',
         accent: '#7E5A7E',
         tint: '#F7F3F7',
@@ -813,12 +817,12 @@
     }
 
     /**
-     * Maqueta de Caja Plegadiza (imagen en Diapositivas 3, 4 y 7; CSS en los demás productos con caja)
+     * Maqueta de Caja Plegadiza (imagen en Diapositivas 3, 4, 5, 6 y 7)
      */
     function renderFoldingBoxMockup(product) {
       if (!product.box) return '';
 
-      // Diapositivas 03, 04 y 07: mostrar imagen con el mismo tamaño que el envase
+      // Diapositivas 03, 04, 05, 06 y 07: mostrar imagen con el mismo tamaño que el envase
       if (product.boxImage) {
         return `
           <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">

@@ -165,22 +165,22 @@
     </main>
 
     <!-- ==================== FOOTER MINIMALISTA (SOLO FLECHAS + PROGRESO) ==================== -->
-    <footer class="sticky bottom-0 z-30 bg-porcelain/95 backdrop-blur-md border-t border-hairline shrink-0">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-center gap-4 sm:gap-6">
-        <!-- Botón Izquierdo: Solo icono flecha -->
+    <footer class="w-full shrink-0 py-3">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-4 sm:gap-6">
+        <!-- Botón Izquierdo: Solo icono flecha limpio -->
         <button
           id="btn-prev"
           type="button"
-          class="w-10 h-10 rounded-full border border-hairline bg-white hover:bg-ink hover:text-white hover:border-ink disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-ink disabled:hover:border-hairline disabled:cursor-not-allowed flex items-center justify-center text-ink transition-all shrink-0 shadow-[0_2px_8px_-4px_rgba(24,24,27,0.08)]"
+          class="p-2 text-ink/70 hover:text-ink disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors shrink-0"
           aria-label="Diapositiva anterior"
         >
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12.5 4.5L7 10l5.5 5.5" />
           </svg>
         </button>
 
-        <!-- Indicador central: Número + Línea de progreso segmentada en 12 diapositivas -->
-        <div class="flex-1 max-w-md flex flex-col items-center gap-2 min-w-0">
+        <!-- Indicador central: Número de diapositiva + Línea de progreso segmentada -->
+        <div class="flex-1 max-w-md flex flex-col items-center gap-1.5 min-w-0">
           <div class="text-[11px] font-medium tabular-nums tracking-widest text-muted">
             <span id="counter-current" class="text-ink font-semibold">01</span>
             <span class="mx-1 text-gray-300">/</span>
@@ -197,14 +197,14 @@
           </div>
         </div>
 
-        <!-- Botón Derecho: Solo icono flecha -->
+        <!-- Botón Derecho: Solo icono flecha limpio -->
         <button
           id="btn-next"
           type="button"
-          class="w-10 h-10 rounded-full border border-hairline bg-white hover:bg-ink hover:text-white hover:border-ink disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-ink disabled:hover:border-hairline disabled:cursor-not-allowed flex items-center justify-center text-ink transition-all shrink-0 shadow-[0_2px_8px_-4px_rgba(24,24,27,0.08)]"
+          class="p-2 text-ink/70 hover:text-ink disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors shrink-0"
           aria-label="Diapositiva siguiente"
         >
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M7.5 4.5L13 10l-5.5 5.5" />
           </svg>
         </button>

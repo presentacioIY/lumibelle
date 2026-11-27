@@ -892,77 +892,25 @@
     }
 
     /**
-     * Mini envase proporcional para el Bodegón de la Línea Completa (Diapositiva 11)
+     * Imagen proporcional de cada envase para el Bodegón de la Línea Completa (Diapositiva 11)
      */
     function renderLineupVessel(product) {
-      const t = product.vesselType;
-      if (t === 'dropper') {
-        return `
-          <div class="flex flex-col items-center">
-            <div class="w-3.5 h-5 rounded-t-full pure-white-part border-b-0"></div>
-            <div class="w-6 h-3 rounded-t-[2px] pure-white-part"></div>
-            <div class="w-20 h-28 rounded-t-[6px] rounded-b-[7px] glass-body p-1.5 flex items-center">
-              ${renderFrontLabel(product, true)}
-            </div>
-          </div>
-        `;
-      }
-      if (t === 'jar') {
-        return `
-          <div class="flex flex-col items-center">
-            <div class="w-24 h-5 rounded-t-[6px] pure-white-part"></div>
-            <div class="w-26 h-20 rounded-t-[4px] rounded-b-[12px] glass-body p-1.5 flex items-center" style="width: 104px;">
-              ${renderFrontLabel(product, true)}
-            </div>
-          </div>
-        `;
-      }
-      if (t === 'airless') {
-        return `
-          <div class="flex flex-col items-center">
-            <div class="w-16 h-6 rounded-t-[6px] pure-white-part"></div>
-            <div class="w-16 h-26 rounded-b-[6px] pure-white-part border-t-0 p-1 flex items-center shadow-sm" style="height: 106px;">
-              ${renderFrontLabel(product, true)}
-            </div>
-          </div>
-        `;
-      }
-      if (t === 'pump') {
-        return `
-          <div class="flex flex-col items-center">
-            <div class="flex items-start">
-              <div class="w-5 h-3 rounded-t-[3px] pure-white-part"></div>
-              <div class="w-4 h-1.5 mt-0.5 -ml-0.5 rounded-r-full pure-white-part"></div>
-            </div>
-            <div class="w-3 h-2 pure-white-part border-y-0"></div>
-            <div class="w-7 h-2.5 pure-white-part"></div>
-            <div class="w-22 h-36 rounded-t-[7px] rounded-b-[8px] glass-body p-1.5 flex items-center" style="width: 90px;">
-              ${renderFrontLabel(product, true)}
-            </div>
-          </div>
-        `;
-      }
-      if (t === 'foamer') {
-        return `
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-8 rounded-t-[6px] clear-overcap flex flex-col items-center justify-end pb-0.5">
-              <div class="w-6 h-4 rounded-t-[3px] pure-white-part"></div>
-            </div>
-            <div class="w-12 h-2.5 pure-white-part border-t-0"></div>
-            <div class="w-20 h-36 rounded-t-[6px] rounded-b-[8px] glass-body p-1.5 flex items-center">
-              ${renderFrontLabel(product, true)}
-            </div>
-          </div>
-        `;
-      }
-      // fliptop 400ml
+      const heightByType = {
+        dropper: 'h-[144px]',
+        jar: 'h-[104px]',
+        airless: 'h-[130px]',
+        pump: 'h-[174px]',
+        foamer: 'h-[184px]',
+        fliptop: 'h-[192px]'
+      };
+      const heightClass = heightByType[product.vesselType] || 'h-[150px]';
+
       return `
-        <div class="flex flex-col items-center">
-          <div class="w-9 h-4 rounded-t-[4px] pure-white-part"></div>
-          <div class="w-24 h-44 rounded-t-[8px] rounded-b-[9px] glass-body p-1.5 flex items-center">
-            ${renderFrontLabel(product, true)}
-          </div>
-        </div>
+        <img
+          src="${product.vesselImage}"
+          alt="${product.name}"
+          class="${heightClass} w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+        />
       `;
     }
 
@@ -1001,7 +949,7 @@
               />
               <div class="w-14 h-px bg-ink/40 mx-auto my-6"></div>
               <h2 class="font-serif text-2xl sm:text-4xl font-normal text-ink leading-tight">
-                Ciencia cosmética y naturaleza
+                ciencia cosmética y naturaleza
               </h2>
             </div>
 

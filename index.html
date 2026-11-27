@@ -720,20 +720,20 @@
     ];
 
     /**
-     * Tabla exacta de 11 referentes Farmatodo (Diapositiva 12).
+     * Tabla exacta de 11 referentes Farmatodo comparados lado a lado con Lumibelle (Diapositiva 12).
      */
     const FARMATODO_REFS = [
-      { lumibelle: 'Serum de Ácido Hialurónico', ref: 'Sérum Ácido Hialurónico + Silicio Orgánico', vol: '30 ml', price: '$40.950' },
-      { lumibelle: 'Serum de Vitamina C', ref: 'Serum Vitamina C con Ácido Ferúlico', vol: '30 ml', price: '$41.950' },
-      { lumibelle: 'Crema hidratante', ref: 'Crema Aquagel 7 Tipos Ácido Hialurónico', vol: '50 g', price: '$39.950' },
-      { lumibelle: 'Crema antiedad', ref: 'Crema Antiedad con Bioretinol', vol: '50 g', price: '$41.950' },
-      { lumibelle: 'Contorno de ojos', ref: 'Contorno de Ojos Multipéptidos Efecto Lifting', vol: '15 ml', price: '$41.950' },
-      { lumibelle: 'Contorno de ojos', ref: 'Crema Contorno de Ojos Ácido Hialurónico Cafeína', vol: '15 g', price: '$39.950' },
-      { lumibelle: 'Gel limpiador', ref: 'Gel Limpiador Facial con Niacinamida', vol: '120 ml', price: '$34.950' },
-      { lumibelle: 'Gel limpiador', ref: 'Gel Limpiador con Ácido Salicílico', vol: '250 ml', price: '$39.950' },
-      { lumibelle: 'Gel limpiador', ref: 'Gel Limpiador con Niacinamida', vol: '500 ml', price: '$54.950' },
-      { lumibelle: 'Agua micelar', ref: 'Agua Micelar con Ácido Hialurónico', vol: '400 ml', price: '$19.950' },
-      { lumibelle: 'Espuma limpiadora', ref: 'No se encontró espuma de marca propia Farmatodo', vol: '—', price: '—' }
+      { productId: 'p1', lumibelle: 'Serum de Ácido Hialurónico', ref: 'Sérum Ácido Hialurónico + Silicio Orgánico', vol: '30 ml', price: '$40.950' },
+      { productId: 'p2', lumibelle: 'Serum de Vitamina C', ref: 'Serum Vitamina C con Ácido Ferúlico', vol: '30 ml', price: '$41.950' },
+      { productId: 'p3', lumibelle: 'Crema hidratante', ref: 'Crema Aquagel 7 Tipos Ácido Hialurónico', vol: '50 g', price: '$39.950' },
+      { productId: 'p4', lumibelle: 'Crema antiedad', ref: 'Crema Antiedad con Bioretinol', vol: '50 g', price: '$41.950' },
+      { productId: 'p5', lumibelle: 'Contorno de ojos', ref: 'Contorno de Ojos Multipéptidos Efecto Lifting', vol: '15 ml', price: '$41.950' },
+      { productId: 'p5', lumibelle: 'Contorno de ojos', ref: 'Crema Contorno de Ojos Ácido Hialurónico Cafeína', vol: '15 g', price: '$39.950' },
+      { productId: 'p6', lumibelle: 'Gel limpiador', ref: 'Gel Limpiador Facial con Niacinamida', vol: '120 ml', price: '$34.950' },
+      { productId: 'p6', lumibelle: 'Gel limpiador', ref: 'Gel Limpiador con Ácido Salicílico', vol: '250 ml', price: '$39.950' },
+      { productId: 'p6', lumibelle: 'Gel limpiador', ref: 'Gel Limpiador con Niacinamida', vol: '500 ml', price: '$54.950' },
+      { productId: 'p8', lumibelle: 'Agua micelar', ref: 'Agua Micelar con Ácido Hialurónico', vol: '400 ml', price: '$19.950' },
+      { productId: 'p7', lumibelle: 'Espuma limpiadora', ref: 'No se encontró espuma de marca propia Farmatodo', vol: '—', price: '—' }
     ];
 
     const TOTAL_SLIDES = 13;
@@ -1048,7 +1048,7 @@
         <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-9 items-center">
 
-            <!-- COLUMNA IZQUIERDA: Maqueta CSS + Selector Caja + Tarjeta de Precios -->
+            <!-- COLUMNA IZQUIERDA: Imagen del envase / Caja plegadiza + Tarjeta de Precios -->
             <div class="lg:col-span-5 flex flex-col gap-4">
               <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-6 flex flex-col items-center justify-between min-h-[385px] relative overflow-hidden">
                 <!-- Halo cromático muy sutil de fondo -->
@@ -1086,7 +1086,7 @@
                   `}
                 </div>
 
-                <!-- Escenario de maqueta CSS -->
+                <!-- Escenario de imagen o maqueta de caja -->
                 <div class="w-full flex-1 flex items-center justify-center relative z-10">
                   ${showBox ? renderFoldingBoxMockup(product) : renderVesselMockup(product)}
                 </div>
@@ -1299,20 +1299,20 @@
     }
 
     /**
-     * Diapositiva 12: Productos referentes del mercado (Farmatodo)
+     * Diapositiva 12: Cuadro comparativo unificado Lumibelle vs. Referentes Farmatodo
      */
     function renderSlide11Farmatodo() {
       return `
-        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
-          <div class="mb-5">
+        <section class="max-w-7xl w-full mx-auto px-4 sm:px-8 py-5 sm:py-7 slide-enter">
+          <div class="mb-4">
             <p class="text-[11px] font-semibold tracking-eyebrow uppercase text-muted mb-1">
-              Benchmark de Mercado
+              Benchmark de Mercado · Comparativo Directo
             </p>
             <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink leading-tight">
-              Referentes Farmatodo (marca propia)
+              Lumibelle vs. Referentes Farmatodo (marca propia)
             </h2>
-            <p class="text-xs sm:text-sm text-muted mt-1.5">
-              Precios de lista publicados en farmatodo.com.co y en el lineal. Farmatodo aplica promociones frecuentes: verificar antes de presentar.
+            <p class="text-xs sm:text-sm text-muted mt-1">
+              Precios de lista publicados en farmatodo.com.co y en el lineal frente al PVP sugerido de Lumibelle. Farmatodo aplica promociones frecuentes: verificar antes de presentar.
             </p>
           </div>
 
@@ -1320,22 +1320,51 @@
             <div class="overflow-x-auto soft-scroll">
               <table class="w-full text-left border-collapse">
                 <thead>
-                  <tr class="border-b border-hairline bg-porcelain/90 text-[10.5px] font-semibold tracking-eyebrow uppercase text-muted">
-                    <th class="py-3 px-4 sm:px-6">Producto Lumibelle</th>
-                    <th class="py-3 px-4 sm:px-6">Referente Farmatodo</th>
-                    <th class="py-3 px-4 sm:px-6 text-right">Contenido</th>
-                    <th class="py-3 px-4 sm:px-6 text-right">Precio de lista</th>
+                  <!-- Encabezado agrupado para diferenciar ambos bloques en el mismo cuadro -->
+                  <tr class="border-b border-hairline text-[10px] font-semibold tracking-eyebrow uppercase">
+                    <th colspan="3" class="py-2.5 px-4 sm:px-5 bg-porcelain text-ink border-r border-hairline">
+                      Portafolio LUMIBELLE
+                    </th>
+                    <th colspan="3" class="py-2.5 px-4 sm:px-5 bg-white text-muted">
+                      Referente Farmatodo (marca propia)
+                    </th>
+                  </tr>
+                  <tr class="border-b border-hairline bg-porcelain/70 text-[10px] font-semibold tracking-eyebrow uppercase text-muted">
+                    <th class="py-2.5 px-4 sm:px-5">Producto</th>
+                    <th class="py-2.5 px-3 text-right whitespace-nowrap">Cont.</th>
+                    <th class="py-2.5 px-3 sm:px-4 text-right text-ink border-r border-hairline whitespace-nowrap">PVP Lumibelle</th>
+                    <th class="py-2.5 px-4 sm:px-5 bg-white/80">Producto referente</th>
+                    <th class="py-2.5 px-3 text-right bg-white/80 whitespace-nowrap">Cont.</th>
+                    <th class="py-2.5 px-4 sm:px-5 text-right bg-white/80 whitespace-nowrap">Precio lista</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-hairline text-xs sm:text-[13px]">
-                  ${FARMATODO_REFS.map(row => `
-                    <tr class="hover:bg-porcelain/50 transition-colors">
-                      <td class="py-2.5 px-4 sm:px-6 font-medium text-ink whitespace-nowrap">${row.lumibelle}</td>
-                      <td class="py-2.5 px-4 sm:px-6 ${row.price === '—' ? 'italic text-muted' : 'text-muted'}">${row.ref}</td>
-                      <td class="py-2.5 px-4 sm:px-6 text-right tabular-nums text-muted whitespace-nowrap">${row.vol}</td>
-                      <td class="py-2.5 px-4 sm:px-6 text-right tabular-nums font-semibold text-ink whitespace-nowrap">${row.price}</td>
-                    </tr>
-                  `).join('')}
+                  ${FARMATODO_REFS.map(row => {
+                    const prod = PRODUCTS.find(p => p.id === row.productId);
+                    const isNoRef = row.price === '—';
+                    return `
+                      <tr class="hover:bg-porcelain/50 transition-colors">
+                        <!-- Bloque LUMIBELLE -->
+                        <td class="py-2 px-4 sm:px-5 font-medium text-ink whitespace-nowrap">
+                          <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full shrink-0" style="background-color: ${prod.accent};"></span>
+                            <span>${row.lumibelle}</span>
+                          </div>
+                        </td>
+                        <td class="py-2 px-3 text-right tabular-nums text-muted whitespace-nowrap">${prod.volume}</td>
+                        <td class="py-2 px-3 sm:px-4 text-right tabular-nums font-semibold border-r border-hairline whitespace-nowrap">
+                          <span class="px-2 py-0.5 rounded-full text-[11.5px]" style="background-color: ${prod.tint}; color: ${prod.accent};">
+                            ${prod.pvp}
+                          </span>
+                        </td>
+
+                        <!-- Bloque Referente Farmatodo -->
+                        <td class="py-2 px-4 sm:px-5 ${isNoRef ? 'italic text-muted/80' : 'text-muted'}">${row.ref}</td>
+                        <td class="py-2 px-3 text-right tabular-nums text-muted whitespace-nowrap">${row.vol}</td>
+                        <td class="py-2 px-4 sm:px-5 text-right tabular-nums font-semibold text-ink whitespace-nowrap">${row.price}</td>
+                      </tr>
+                    `;
+                  }).join('')}
                 </tbody>
               </table>
             </div>

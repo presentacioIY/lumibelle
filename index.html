@@ -215,6 +215,11 @@
 
   <!-- ==================== DATOS Y LÓGICA DE LA PRESENTACIÓN ==================== -->
   <script>
+    // =====================================================================
+    // PEGA AQUÍ EL SRC DE TU IMAGEN DE PORTADA (Base64, URL o archivo local ej. "portada.jpg")
+    // =====================================================================
+    const PORTADA_SRC = "lumibelle_ppt.jpeg";
+
     /**
      * Portafolio exacto de los 8 productos LUMIBELLE (Diapositivas 2 a 9).
      */
@@ -1086,66 +1091,16 @@
        ===================================================================== */
 
     /**
-     * Diapositiva 1: Introducción a la línea
+     * Diapositiva 1: Portada únicamente con la imagen
      */
     function renderSlide1Intro() {
       return `
-        <section class="max-w-5xl w-full mx-auto px-5 sm:px-10 py-10 sm:py-12 slide-enter">
-          <div class="bg-white border border-hairline rounded-3xl p-8 sm:p-12 lg:p-16 shadow-[0_24px_60px_-32px_rgba(24,24,27,0.08)]">
-            <!-- Encabezado editorial discreto -->
-            <div class="flex flex-wrap items-center justify-between gap-3 pb-7 border-b border-hairline">
-              <span class="text-[11px] font-medium tracking-eyebrow uppercase text-muted">
-                Propuesta Comercial · Línea Facial
-              </span>
-              <span class="text-[11px] font-medium text-muted">
-                Instincts Humains para <strong class="text-ink font-semibold">Coopidrogas</strong>
-              </span>
-            </div>
-
-            <!-- Logotipo tipográfico principal -->
-            <div class="pt-9 pb-7 text-center">
-              <h1 class="font-serif text-5xl sm:text-7xl font-medium tracking-brand uppercase text-ink leading-none">
-                LUMIBELLE
-              </h1>
-              <div class="w-14 h-px bg-ink/40 mx-auto my-6"></div>
-              <h2 class="font-serif text-2xl sm:text-4xl font-normal text-ink leading-tight">
-                Lumibelle: ciencia cosmética y naturaleza
-              </h2>
-            </div>
-
-            <!-- Texto exacto del brief -->
-            <div class="max-w-3xl mx-auto space-y-4 text-center text-sm sm:text-base leading-relaxed text-muted">
-              <p class="text-ink font-medium text-base sm:text-lg">
-                Lumibelle es una línea facial pensada para entregar mucho valor con un costo optimizado.
-              </p>
-              <p>
-                Sus fórmulas toman los beneficios de la naturaleza y honran la ancestralidad de los extractos naturales. A la vez, combinan esos extractos en desarrollos tecnológicos avanzados para que la piel los tolere perfectamente y obtenga beneficios reales.
-              </p>
-              <p>
-                Inspirada en la cosmética coreana, Lumibelle une nueva tecnología con extractos eficaces que cuidan la piel y aportan a su longevidad: un cuidado enfocado en el <span class="text-ink font-medium italic font-serif text-lg">well aging</span>.
-              </p>
-            </div>
-
-            <!-- 3 píldoras/métricas limpias al pie del bloque -->
-            <div class="mt-9 pt-7 border-t border-hairline flex flex-wrap items-center justify-center gap-3">
-              <span class="px-4 py-2 rounded-full bg-porcelain border border-hairline text-xs sm:text-sm font-medium text-ink">
-                8 productos
-              </span>
-              <span class="px-4 py-2 rounded-full bg-porcelain border border-hairline text-xs sm:text-sm font-medium text-ink">
-                5 con caja plegadiza
-              </span>
-              <span class="px-4 py-2 rounded-full bg-porcelain border border-hairline text-xs sm:text-sm font-medium text-ink">
-                PVP sugerido: $19.900 – $44.900
-              </span>
-            </div>
-
-            <!-- Código cromático sutil de los 8 productos -->
-            <div class="grid grid-cols-8 gap-1.5 mt-7 max-w-md mx-auto">
-              ${PRODUCTS.map(p => `
-                <div class="h-1 rounded-full" style="background-color: ${p.accent}; opacity: 0.85;"></div>
-              `).join('')}
-            </div>
-          </div>
+        <section class="w-full h-full flex items-center justify-center p-2 sm:p-4 slide-enter">
+          <img
+            src="${PORTADA_SRC}"
+            alt="LUMIBELLE Skincare — Propuesta de desarrollo Línea Facial para Coopidrogas"
+            class="max-w-full max-h-[calc(100dvh-5.5rem)] w-auto h-auto object-contain rounded-2xl shadow-[0_24px_60px_-32px_rgba(24,24,27,0.12)]"
+          />
         </section>
       `;
     }

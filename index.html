@@ -237,6 +237,11 @@
     const ENVASE_P7_SRC = "espuma-limpiadora-lumibelle.png";   // Diapositiva 9: Espuma limpiadora facial
     const ENVASE_P8_SRC = "agua-micelar-lumibelle.png";        // Diapositiva 10: Agua micelar
 
+    // =====================================================================
+    // IMAGEN DE CAJA PLEGADIZA (DIAPOSITIVA 4)
+    // =====================================================================
+    const CAJA_P2_SRC = "caja-serum-lumibelle-vitamina-c.png"; // Diapositiva 4: Caja plegadiza Serum Vitamina C
+
     /**
      * Portafolio exacto de los 8 productos LUMIBELLE (Diapositivas 3 a 10).
      */
@@ -317,6 +322,7 @@
         hasBox: true,
         vesselType: 'dropper',
         vesselImage: ENVASE_P2_SRC,
+        boxImage: CAJA_P2_SRC,
         vesselSpec: 'Vidrio transparente, hombro recto, gotero y casquete blancos',
         accent: '#D9822B',
         tint: '#FDF6EE',
@@ -847,10 +853,24 @@
     }
 
     /**
-     * Maqueta arquitectónica de Caja Plegadiza en CSS puro (para los 5 productos con caja)
+     * Maqueta de Caja Plegadiza (imagen en Diapositiva 4, CSS en los demás productos con caja)
      */
     function renderFoldingBoxMockup(product) {
       if (!product.box) return '';
+
+      // Diapositiva 04 (Serum Vitamina C): mostrar imagen con el mismo tamaño que el envase
+      if (product.boxImage) {
+        return `
+          <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
+            <img
+              src="${product.boxImage}"
+              alt="Caja plegadiza — ${product.name}"
+              class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_14px_20px_rgba(24,24,27,0.14)]"
+            />
+          </div>
+        `;
+      }
+
       return `
         <div class="w-full max-w-[300px] mx-auto py-1 fade-quick">
           <div class="folding-box-card rounded-[10px] overflow-hidden">

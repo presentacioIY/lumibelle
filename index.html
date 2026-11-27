@@ -736,11 +736,11 @@
      */
     function renderVesselMockup(product) {
       return `
-        <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
+        <div class="w-full h-[390px] sm:h-[440px] flex items-center justify-center py-0 fade-quick">
           <img
             src="${product.vesselImage}"
             alt="${product.name}"
-            class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_14px_20px_rgba(24,24,27,0.14)]"
+            class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_16px_24px_rgba(24,24,27,0.14)]"
           />
         </div>
       `;
@@ -754,11 +754,11 @@
 
       if (product.boxImage) {
         return `
-          <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">
+          <div class="w-full h-[390px] sm:h-[440px] flex items-center justify-center py-0 fade-quick">
             <img
               src="${product.boxImage}"
               alt="Caja plegadiza — ${product.name}"
-              class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_14px_20px_rgba(24,24,27,0.14)]"
+              class="max-h-full max-w-full w-auto h-auto object-contain drop-shadow-[0_16px_24px_rgba(24,24,27,0.14)]"
             />
           </div>
         `;
@@ -896,12 +896,12 @@
       const showBox = product.hasBox && state.vesselView === 'box';
 
       return `
-        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
+        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-4 sm:py-6 slide-enter">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-9 items-center">
 
             <!-- COLUMNA IZQUIERDA: Imagen del envase / Caja plegadiza + Tarjeta de Precios -->
-            <div class="lg:col-span-5 flex flex-col gap-4">
-              <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-6 flex flex-col items-center justify-between min-h-[385px] relative overflow-hidden">
+            <div class="lg:col-span-5 flex flex-col gap-3.5">
+              <div class="bg-white border border-hairline rounded-3xl p-4 sm:p-5 flex flex-col items-center justify-between min-h-[445px] sm:min-h-[495px] relative overflow-hidden">
                 <!-- Halo cromático muy sutil de fondo -->
                 <div
                   class="absolute -top-24 -right-24 w-56 h-56 rounded-full pointer-events-none opacity-45 blur-3xl"
@@ -909,7 +909,7 @@
                 ></div>
 
                 <!-- Selector Envase | Caja plegadiza (solo en los 5 productos con caja) -->
-                <div class="w-full flex items-center justify-between gap-2 mb-3 relative z-10">
+                <div class="w-full flex items-center justify-between gap-2 mb-2 relative z-10">
                   <span class="text-[10px] font-semibold tracking-eyebrow uppercase text-muted">
                     ${showBox ? 'Empaque secundario' : 'Envase de referencia'}
                   </span>

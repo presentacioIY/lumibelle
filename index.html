@@ -90,7 +90,7 @@
     }
 
     /* =====================================================================
-       MAQUETAS ARQUITECTÓNICAS EN CSS PURO (SIN IMÁGENES)
+       MAQUETAS ARQUITECTÓNICAS EN CSS PURO (BODEGÓN Y CAJAS SIN IMAGEN)
        ===================================================================== */
 
     /* Efecto de vidrio / PET transparente con brillo vertical realista */
@@ -216,17 +216,13 @@
   <!-- ==================== DATOS Y LÓGICA DE LA PRESENTACIÓN ==================== -->
   <script>
     // =====================================================================
-    // PEGA AQUÍ EL SRC DE TU IMAGEN DE PORTADA (Base64, URL o archivo local ej. "portada.jpg")
+    // IMAGEN DE PORTADA (DIAPOSITIVA 1) Y LOGO DE INTRODUCCIÓN (DIAPOSITIVA 2)
     // =====================================================================
     const PORTADA_SRC = "lumibelle_ppt.jpeg";
-
-    // =====================================================================
-    // PEGA AQUÍ EL SRC DE LA IMAGEN DEL LOGO PARA LA DIAPOSITIVA 2 (ej. "logo.png", URL o Base64)
-    // =====================================================================
     const LOGO_INTRO_SRC = "logo.jpeg";
 
     // =====================================================================
-    // NOMBRES DE LAS IMÁGENES DE ENVASE PARA LOS 8 PRODUCTOS (DIAPOSITIVAS 3 A 10)
+    // IMÁGENES DE ENVASE PARA LOS 8 PRODUCTOS (DIAPOSITIVAS 3 A 10)
     // =====================================================================
     const ENVASE_P1_SRC = "serum-lumibelle-hidratante.png";    // Diapositiva 3: Serum Ácido Hialurónico
     const ENVASE_P2_SRC = "serum-lumibelle-vitamina-c.png";    // Diapositiva 4: Serum Vitamina C
@@ -238,10 +234,11 @@
     const ENVASE_P8_SRC = "agua-micelar-lumibelle.png";        // Diapositiva 10: Agua micelar
 
     // =====================================================================
-    // IMÁGENES DE CAJA PLEGADIZA (DIAPOSITIVAS 3 Y 4)
+    // IMÁGENES DE CAJA PLEGADIZA (DIAPOSITIVAS 3, 4 Y 7)
     // =====================================================================
     const CAJA_P1_SRC = "caja-serum-lumibelle-hidratante.png"; // Diapositiva 3: Caja plegadiza Serum Ácido Hialurónico
     const CAJA_P2_SRC = "caja-serum-lumibelle-vitamina-c.png"; // Diapositiva 4: Caja plegadiza Serum Vitamina C
+    const CAJA_P5_SRC = "caja-contorno-ojos-lumibelle.png";    // Diapositiva 7: Caja plegadiza Contorno de ojos
 
     /**
      * Portafolio exacto de los 8 productos LUMIBELLE (Diapositivas 3 a 10).
@@ -512,6 +509,7 @@
         hasBox: true,
         vesselType: 'airless',
         vesselImage: ENVASE_P5_SRC,
+        boxImage: CAJA_P5_SRC,
         vesselSpec: 'Airless blanco, bomba blanca con sobretapa blanca',
         accent: '#5E8C6A',
         tint: '#F2F7F3',
@@ -728,7 +726,7 @@
     ];
 
     /**
-     * Tabla exacta de 11 referentes Farmatodo comparados lado a lado con Lumibelle (Diapositiva 12).
+     * Tabla exacta de 11 referentes Farmatodo (Diapositiva 12).
      */
     const FARMATODO_REFS = [
       { productId: 'p1', lumibelle: 'Serum de Ácido Hialurónico', ref: 'Sérum Ácido Hialurónico + Silicio Orgánico', vol: '30 ml', price: '$40.950' },
@@ -774,11 +772,11 @@
     }
 
     /* =====================================================================
-       MAQUETAS ARQUITECTÓNICAS DE ENVASES Y CAJAS EN CSS PURO
+       MAQUETAS ARQUITECTÓNICAS PARA BODEGÓN Y CAJAS SIN IMAGEN
        ===================================================================== */
 
     /**
-     * Etiqueta frontal impresa sobre el envase (modo completo o compacto para bodegón)
+     * Etiqueta frontal compacta para el bodegón de la línea completa
      */
     function renderFrontLabel(product, compact = false) {
       if (compact) {
@@ -796,47 +794,7 @@
           </div>
         `;
       }
-
-      const isJar = product.vesselType === 'jar';
-      return `
-        <div class="w-full h-full bg-white rounded-[5px] border border-[#E5E3DE] overflow-hidden flex flex-col justify-between shadow-[0_2px_10px_-4px_rgba(24,24,27,0.08)]">
-          <!-- Banda cromática del activo -->
-          <div class="h-2 w-full shrink-0" style="background-color: ${product.accent};"></div>
-
-          <div class="${isJar ? 'px-3.5 py-2.5' : 'px-3.5 py-3'} flex-1 flex flex-col justify-between text-left">
-            <div>
-              <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-hairline">
-                <span class="font-serif text-[11px] font-semibold tracking-[0.24em] uppercase text-ink leading-none">LUMIBELLE</span>
-                <span class="text-[8px] uppercase tracking-widest text-gray-400">Facial</span>
-              </div>
-
-              <h4 class="${isJar ? 'text-[12px]' : 'text-[13px]'} font-semibold text-ink leading-tight mb-1.5">
-                ${product.name}
-              </h4>
-
-              <div class="space-y-0.5 mb-2">
-                ${product.label.actives.map(act => `
-                  <p class="text-[10px] font-semibold leading-tight" style="color: ${product.accent};">${act}</p>
-                `).join('')}
-              </div>
-
-              <ul class="space-y-1">
-                ${product.label.benefits.map(b => `
-                  <li class="flex items-start gap-1.5 text-[9px] text-muted leading-tight">
-                    <span class="mt-1 w-1 h-1 rounded-full shrink-0" style="background-color: ${product.accent};"></span>
-                    <span>${b}</span>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
-
-            <div class="pt-1.5 mt-2 border-t border-hairline flex items-center justify-between text-[8.5px] font-medium text-ink">
-              <span>Cont. neto ${product.volume}</span>
-              <span class="w-2 h-2 rounded-full" style="background-color: ${product.accent}; opacity: 0.7;"></span>
-            </div>
-          </div>
-        </div>
-      `;
+      return '';
     }
 
     /**
@@ -855,12 +813,12 @@
     }
 
     /**
-     * Maqueta de Caja Plegadiza (imagen en Diapositivas 3 y 4, CSS en los demás productos con caja)
+     * Maqueta de Caja Plegadiza (imagen en Diapositivas 3, 4 y 7; CSS en los demás productos con caja)
      */
     function renderFoldingBoxMockup(product) {
       if (!product.box) return '';
 
-      // Diapositivas 03 y 04: mostrar imagen con el mismo tamaño que el envase
+      // Diapositivas 03, 04 y 07: mostrar imagen con el mismo tamaño que el envase
       if (product.boxImage) {
         return `
           <div class="w-full h-[320px] flex items-center justify-center py-2 fade-quick">

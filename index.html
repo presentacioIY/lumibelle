@@ -139,16 +139,16 @@
           <div class="text-[11px] font-medium tabular-nums tracking-widest text-muted">
             <span id="counter-current" class="text-ink font-semibold">01</span>
             <span class="mx-1 text-gray-300">/</span>
-            <span id="counter-total">14</span>
+            <span id="counter-total">13</span>
           </div>
 
           <div
             id="progress-segments"
-            class="w-full grid grid-cols-[repeat(14,minmax(0,1fr))] gap-1 sm:gap-1.5 items-center"
+            class="w-full grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1 sm:gap-1.5 items-center"
             role="tablist"
             aria-label="Progreso de diapositivas"
           >
-            <!-- 14 segmentos interactivos generados por JS -->
+            <!-- 13 segmentos interactivos generados por JS -->
           </div>
         </div>
 
@@ -702,15 +702,14 @@
       { productId: 'p7', lumibelle: 'Espuma limpiadora', ref: 'No se encontró espuma de marca propia Farmatodo', vol: '—', price: '—' }
     ];
 
-    const TOTAL_SLIDES = 14;
+    const TOTAL_SLIDES = 13;
 
     // Estado de la aplicación
     const state = {
-      currentSlide: 0,      // 0..13
+      currentSlide: 0,      // 0..12
       vesselView: 'vessel', // 'vessel' | 'box'
       detailTab: 'benefits',// 'benefits' | 'ingredients'
-      lineupFilter: 'all',  // 'all' | 'box' | 'nobox'
-      pricingView: 'table'  // 'table' | 'bars'
+      lineupFilter: 'all'   // 'all' | 'box' | 'nobox'
     };
 
     // Referencias DOM
@@ -1225,157 +1224,9 @@
     }
 
     /**
-     * Diapositiva 13: Precios Lumibelle (Tabla comparativa | Barras visuales)
+     * Diapositiva 13: Cierre únicamente con la imagen
      */
-    function renderSlide12Pricing() {
-      const maxVal = 48000;
-
-      return `
-        <section class="max-w-6xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-8 slide-enter">
-          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
-            <div class="max-w-3xl">
-              <p class="text-[11px] font-semibold tracking-eyebrow uppercase text-muted mb-1">
-                Estrategia de Precios
-              </p>
-              <h2 class="font-serif text-2xl sm:text-4xl font-semibold text-ink leading-tight">
-                PVP Lumibelle entre $19.900 y $44.900, en línea con Farmatodo
-              </h2>
-              <p class="text-[11.5px] sm:text-xs text-muted mt-1.5 leading-relaxed">
-                Costo de cotización: precio unitario de Instincts Humains a Coopidrogas, antes de IVA, por 5.000 unidades por referencia (cotización 20261103-130711723, válida hasta el 1 de febrero de 2027). PVP redondeado a cifras terminadas en 900.
-              </p>
-            </div>
-
-            <!-- Selector Tabla comparativa | Barras visuales -->
-            <div class="inline-flex p-1 rounded-full bg-white border border-hairline shrink-0 self-start lg:self-end">
-              <button
-                type="button"
-                onclick="setPricingView('table')"
-                class="px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  state.pricingView === 'table' ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'
-                }"
-              >
-                Tabla comparativa
-              </button>
-              <button
-                type="button"
-                onclick="setPricingView('bars')"
-                class="px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  state.pricingView === 'bars' ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'
-                }"
-              >
-                Barras visuales
-              </button>
-            </div>
-          </div>
-
-          ${state.pricingView === 'table' ? `
-            <div class="bg-white border border-hairline rounded-3xl overflow-hidden shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)] fade-quick">
-              <div class="overflow-x-auto soft-scroll">
-                <table class="w-full text-left border-collapse">
-                  <thead>
-                    <tr class="border-b border-hairline bg-porcelain/90 text-[10.5px] font-semibold tracking-eyebrow uppercase text-muted">
-                      <th class="py-3.5 px-4 sm:px-6">Producto</th>
-                      <th class="py-3.5 px-4 text-right">Contenido</th>
-                      <th class="py-3.5 px-4 text-right">Costo cotización</th>
-                      <th class="py-3.5 px-4 text-right">Referente Farmatodo</th>
-                      <th class="py-3.5 px-4 sm:px-6 text-right text-ink">PVP sugerido Lumibelle</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-hairline text-xs sm:text-sm">
-                    ${PRODUCTS.map(p => `
-                      <tr class="hover:bg-porcelain/50 transition-colors">
-                        <td class="py-3 px-4 sm:px-6 font-medium text-ink">
-                          <div class="flex items-center gap-2.5">
-                            <span class="w-2 h-2 rounded-full shrink-0" style="background-color: ${p.accent};"></span>
-                            <span>${p.name}</span>
-                          </div>
-                        </td>
-                        <td class="py-3 px-4 text-right tabular-nums text-muted whitespace-nowrap">${p.volume}</td>
-                        <td class="py-3 px-4 text-right tabular-nums text-ink whitespace-nowrap">${p.cost}</td>
-                        <td class="py-3 px-4 text-right tabular-nums text-muted whitespace-nowrap">${p.refFarmatodo}</td>
-                        <td class="py-3 px-4 sm:px-6 text-right tabular-nums font-semibold whitespace-nowrap">
-                          <span class="px-2.5 py-1 rounded-full" style="background-color: ${p.tint}; color: ${p.accent};">
-                            ${p.pvp}
-                          </span>
-                        </td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ` : `
-            <div class="bg-white border border-hairline rounded-3xl p-5 sm:p-7 shadow-[0_18px_48px_-28px_rgba(24,24,27,0.08)] fade-quick">
-              <!-- Leyenda de barras -->
-              <div class="flex flex-wrap items-center gap-4 pb-4 mb-4 border-b border-hairline text-[11px] text-muted">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-3 h-2 rounded-full bg-ink"></span>
-                  <span>Costo cotización IH</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="w-3 h-2 rounded-full bg-[#4A89B8]"></span>
-                  <span>PVP sugerido Lumibelle (color del activo)</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="w-3 h-2 rounded-full bg-[#D6D3CD]"></span>
-                  <span>Referente Farmatodo</span>
-                </div>
-              </div>
-
-              <!-- Barras comparativas en CSS puro -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                ${PRODUCTS.map(p => {
-                  const costPct = Math.round((p.costNum / maxVal) * 100);
-                  const pvpPct = Math.round((p.pvpNum / maxVal) * 100);
-                  const refPct = p.refFarmatodoNum ? Math.round((p.refFarmatodoNum / maxVal) * 100) : 0;
-
-                  return `
-                    <div class="space-y-1.5">
-                      <div class="flex items-center justify-between text-xs">
-                        <span class="font-semibold text-ink truncate pr-2">${p.shortName} <span class="font-normal text-muted">(${p.volume})</span></span>
-                        <span class="font-semibold tabular-nums shrink-0" style="color: ${p.accent};">${p.pvp}</span>
-                      </div>
-
-                      <!-- Barra 1: Costo cotización -->
-                      <div class="flex items-center gap-2">
-                        <div class="flex-1 h-2 rounded-full bg-porcelain overflow-hidden">
-                          <div class="h-full rounded-full bg-ink transition-all duration-500" style="width: ${costPct}%;"></div>
-                        </div>
-                        <span class="w-14 text-right text-[10px] tabular-nums text-muted">${p.cost}</span>
-                      </div>
-
-                      <!-- Barra 2: PVP Lumibelle -->
-                      <div class="flex items-center gap-2">
-                        <div class="flex-1 h-2 rounded-full bg-porcelain overflow-hidden">
-                          <div class="h-full rounded-full transition-all duration-500" style="width: ${pvpPct}%; background-color: ${p.accent};"></div>
-                        </div>
-                        <span class="w-14 text-right text-[10px] font-semibold tabular-nums" style="color: ${p.accent};">${p.pvp}</span>
-                      </div>
-
-                      <!-- Barra 3: Referente Farmatodo -->
-                      <div class="flex items-center gap-2">
-                        <div class="flex-1 h-2 rounded-full bg-porcelain overflow-hidden">
-                          ${refPct > 0
-                            ? `<div class="h-full rounded-full bg-[#CFCBC4] transition-all duration-500" style="width: ${refPct}%;"></div>`
-                            : `<div class="h-full w-full border border-dashed border-hairline rounded-full"></div>`
-                          }
-                        </div>
-                        <span class="w-14 text-right text-[10px] tabular-nums text-muted">${p.refFarmatodoNum ? '$' + p.refFarmatodoNum.toLocaleString('es-CO') : 'N/A'}</span>
-                      </div>
-                    </div>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          `}
-        </section>
-      `;
-    }
-
-    /**
-     * Diapositiva 14: Cierre únicamente con la imagen
-     */
-    function renderSlide14Final() {
+    function renderSlide13Final() {
       return `
         <section class="w-full h-full flex items-center justify-center p-2 sm:p-4 slide-enter">
           <img
@@ -1430,10 +1281,8 @@
         html = renderSlide10Lineup();
       } else if (idx === 11) {
         html = renderSlide11Farmatodo();
-      } else if (idx === 12) {
-        html = renderSlide12Pricing();
       } else {
-        html = renderSlide14Final();
+        html = renderSlide13Final();
       }
 
       stageEl.innerHTML = html;
@@ -1473,11 +1322,6 @@
 
     window.setLineupFilter = function (filter) {
       state.lineupFilter = filter;
-      renderCurrentSlide();
-    };
-
-    window.setPricingView = function (view) {
-      state.pricingView = view;
       renderCurrentSlide();
     };
 
